@@ -27,7 +27,7 @@ namespace Equationator
 		/// <summary>
 		/// A list of all the names and functions that can be used in teh equation grammar of this dude.
 		/// </summary>
-		private Dictionary<string, FunctionDelegate> FunctionDictionary { get; set; }
+		public Dictionary<string, FunctionDelegate> FunctionDictionary { get; private set; }
 
 		#endregion Members
 
@@ -38,7 +38,6 @@ namespace Equationator
 		/// </summary>
 		public Equation()
 		{
-			OpenParenStart = false;
 			FunctionDictionary = new Dictionary<string, FunctionDelegate>();
 		}
 
@@ -75,7 +74,7 @@ namespace Equationator
 
 			//sort out those tokens into a linked list of equation nodes
 			int index = 0;
-			BaseNode listRootNode = BaseNode.Parse(tokenList, ref index);
+			BaseNode listRootNode = BaseNode.Parse(tokenList, ref index, this);
 
 			//take that linked list and bend it into a binary tree.  Grab the root node
 		}
@@ -110,7 +109,7 @@ namespace Equationator
 				//If we have a string in there, it has to be a number that has been parsed up above
 				if (!string.IsNullOrEmpty(word.ToString()))
 				{
-					tokenList.Add(new Token(word, TokenType.Number));
+					tokenList.Add(new Token(word.ToString(), TokenType.Number));
 					word.Clear();
 				}
 				
@@ -121,7 +120,7 @@ namespace Equationator
 					if (equationText[i + 1] >= '0' && equationText[i + 1] <= '9')
 					{
 						//We have a param value, parse it out and store in the list of values
-						tokenList.Add(new Token(equationText[i + 1], TokenType.Param));
+						tokenList.Add(new Token(equationText[i + 1].ToString(), TokenType.Param));
 						
 						//since we consumed the $ followed by param number, increment the index by 1
 						i++;
@@ -149,12 +148,12 @@ namespace Equationator
 				else if (equationText[i] == '(')
 				{
 					//we found an open paren!
-					tokenList.Add(new Token(equationText[i], TokenType.OpenParen));
+					tokenList.Add(new Token(equationText[i].ToString(), TokenType.OpenParen));
 				}
 				else if (equationText[i] == ')')
 				{
 					//we found a close paren!
-					tokenList.Add(new Token(equationText[i], TokenType.CloseParen));
+					tokenList.Add(new Token(equationText[i].ToString(), TokenType.CloseParen));
 				}
 				else if (equationText[i] == '*' || 
 				         equationText[i] == '/' || 
@@ -163,7 +162,7 @@ namespace Equationator
 				         equationText[i] == '^')
 				{
 					//We found an operator value...
-					tokenList.Add(new Token(equationText[i], TokenType.Operator));
+					tokenList.Add(new Token(equationText[i].ToString(), TokenType.Operator));
 				}
 				else
 				{

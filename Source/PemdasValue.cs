@@ -14,6 +14,7 @@ namespace Equationator
 		Division,
 		Addition,
 		Subtraction,
+		Invalid
 	}
 }
 

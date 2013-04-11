@@ -60,11 +60,14 @@
     <Compile Include="..\Source\TokenType.cs">
       <Link>TokenType.cs</Link>
     </Compile>
-	<Compile Include="..\Source\BaseNode.cs">
+    <Compile Include="..\Source\BaseNode.cs">
       <Link>BaseNode.cs</Link>
     </Compile>
-	<Compile Include="..\Source\PembasValue.cs">
-      <Link>PembasValue.cs</Link>
+    <Compile Include="..\Source\PemdasValue.cs">
+      <Link>PemdasValue.cs</Link>
+    </Compile>
+	<Compile Include="..\Source\ParamDelegate.cs">
+      <Link>ParamDelegate.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
