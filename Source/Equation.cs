@@ -20,12 +20,6 @@ namespace Equationator
 		public string TextEquation { get; private set; }
 
 		/// <summary>
-		/// Flag for whether or not this equation started with a paranthesis.  This is used to parse sub-equations
-		/// If this is true, this equation stops parsing when it hits ")" and exits.
-		/// </summary>
-		private bool OpenParenStart { get; set; }
-
-		/// <summary>
 		/// This is the root node of the equation.  This is set in the Parse method.
 		/// </summary>
 		private EquationNode RootNode { get; set; }
@@ -80,13 +74,10 @@ namespace Equationator
 			List<Token> tokenList = Tokenize(equationText);
 
 			//sort out those tokens into a linked list of equation nodes
+			int index = 0;
+			BaseNode listRootNode = BaseNode.Parse(tokenList, ref index);
 
 			//take that linked list and bend it into a binary tree.  Grab the root node
-		}
-
-		private EquationNode Parse(List<string> equationTokens, ref int curIndex)
-		{
-			//create a stringbuilder for putting together our tokens
 		}
 
 		/// <summary>

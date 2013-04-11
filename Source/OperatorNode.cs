@@ -1,6 +1,6 @@
 namespace Equationator
 {
-	public class OperatorNode
+	public class OperatorNode : BaseNode
 	{
 	}
 }
