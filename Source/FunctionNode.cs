@@ -60,6 +60,19 @@ namespace Equationator
 			//increment the current index since we consumed the function name token
 			curIndex++;
 		}
+
+		/// <summary>
+		/// Solve the equation!
+		/// This method recurses into the whole tree and returns a result from the equation.
+		/// </summary>
+		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
+		/// <returns>The solution of this node and all its subnodes!</returns>
+		public override float Solve(ParamDelegate paramCallback)
+		{
+			//Return the function we found in the parser
+			Debug.Assert(null != MyFunction);
+			return MyFunction();
+		}
 		
 		#endregion Methods
 	}

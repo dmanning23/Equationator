@@ -50,10 +50,24 @@ namespace Equationator
 				fakeNode.NumberValue = 0.0f;
 				SubEquation = fakeNode;
 			}
-
 			Debug.Assert(null != SubEquation);
 
-			//TODO: treeify the subequation
+			//treeify the subequation so we can solve it
+			SubEquation = SubEquation.Treeify();
+			Debug.Assert(null != SubEquation);
+		}
+
+		/// <summary>
+		/// Solve the equation!
+		/// This method recurses into the whole tree and returns a result from the equation.
+		/// </summary>
+		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
+		/// <returns>The solution of this node and all its subnodes!</returns>
+		public override float Solve(ParamDelegate paramCallback)
+		{
+			//Return the sub equation solver
+			Debug.Assert(null != SubEquation);
+			return SubEquation.Solve(paramCallback);
 		}
 		
 		#endregion Methods

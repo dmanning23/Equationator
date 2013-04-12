@@ -83,6 +83,53 @@ namespace Equationator
 			//increment the current index since we consumed the operator token
 			curIndex++;
 		}
+
+		/// <summary>
+		/// Solve the equation!
+		/// This method recurses into the whole tree and returns a result from the equation.
+		/// </summary>
+		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
+		/// <returns>The solution of this node and all its subnodes!</returns>
+		public override float Solve(ParamDelegate paramCallback)
+		{
+			//make sure this node is set up correctly
+			Debug.Assert(null != Prev);
+			Debug.Assert(null != Next);
+
+			//Solve the sub nodes!
+			float prevResult = Prev.Solve(paramCallback);
+			float nextResult = Next.Solve(paramCallback);
+
+			//what kind of operator do we got?
+			switch (OrderOfOperationsValue)
+			{
+				case PemdasValue.Exponent:
+				{
+					return (float)Math.Pow(prevResult, nextResult);
+				}
+				case PemdasValue.Multiplication:
+				{
+					return prevResult * nextResult;
+				}
+				case PemdasValue.Division:
+				{
+					//TODO: can hit divide by zero exception here
+					return prevResult / nextResult;
+				}
+				case PemdasValue.Addition:
+				{
+					return prevResult + nextResult;
+				}
+				case PemdasValue.Subtraction:
+				{
+					return prevResult - nextResult;
+				}
+				default:
+				{
+					throw new NotSupportedException("found a weirdo thing in an equation node?");
+				}
+			}
+		}
 		
 		#endregion Methods
 	}

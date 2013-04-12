@@ -346,19 +346,58 @@ namespace Equationator
 			}
 
 			//find the node with the highest pemdas value (or the first subtraction node, those are always highest)
+			BaseNode RootNode = GetHighestPemdas();
+
+			//by this point nodes are either leaf or binary nodes with a node at each end
+			Debug.Assert(null != RootNode.Prev);
+			Debug.Assert(null != RootNode.Next);
 
 			//set the next node to be the head of it's own list
+			RootNode.Next.MakeHead();
 
 			//set the prev node to be the tail of it's own list
+			RootNode.Prev.MakeTail();
 
 			//set the prev of our root node to the head of the prev list
+			RootNode.Prev = RootNode.Prev.GetHead();
 
 			//set the prev node to the treeifyication result of the "previous" linked list
+			RootNode.Prev = RootNode.Prev.Treeify();
 
 			//set the next node to treeification result of the "next" linked list
+			RootNode.Next = RootNode.Next.Treeify();
 
-			//that's it, the whole equation below this node is treeified now
+			//that's it, the whole equation below the root node is treeified now
+			return RootNode;
+		}
 
+		/// <summary>
+		/// Gets the highest pemdas.
+		/// </summary>
+		/// <returns>The highest pemdas.</returns>
+		private BaseNode GetHighestPemdas()
+		{
+			Debug.Assert(null != Next);
+			BaseNode RootNode = this;
+			for  (BaseNode iter = Next; iter != null; iter = iter.Next)
+			{
+				//if we found a subtraction node, that is the highest value
+				if (PemdasValue.Subtraction ==  RootNode.OrderOfOperationsValue)
+				{
+					break;
+				}
+				else if (iter.OrderOfOperationsValue > RootNode.OrderOfOperationsValue)
+				{
+					//The next node has a higher value than the current champion
+					RootNode = iter;
+				}
+
+				//increment the iterator
+				iter = iter.Next;
+			}
+
+			//ok, return the node we found with the highest value.
+			return RootNode;
 		}
 
 		#endregion //Treeifying Functionality

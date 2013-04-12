@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using System.Text;
+using System.Diagnostics;
 
 namespace Equationator
 {
@@ -22,7 +23,7 @@ namespace Equationator
 		/// <summary>
 		/// This is the root node of the equation.  This is set in the Parse method.
 		/// </summary>
-		private EquationNode RootNode { get; set; }
+		private BaseNode RootNode { get; set; }
 
 		/// <summary>
 		/// A list of all the names and functions that can be used in teh equation grammar of this dude.
@@ -77,6 +78,17 @@ namespace Equationator
 			BaseNode listRootNode = BaseNode.Parse(tokenList, ref index, this);
 
 			//take that linked list and bend it into a binary tree.  Grab the root node
+			RootNode = listRootNode.Treeify();
+		}
+
+		/// <summary>
+		/// Get a result from the equation
+		/// </summary>
+		/// <param name="paramCallback">This is a callback function to get the value of params to pass to this equation</param>
+		public float Solve(ParamDelegate paramCallback)
+		{
+			Debug.Assert(null != RootNode);
+			return RootNode.Solve(paramCallback);
 		}
 
 		/// <summary>
