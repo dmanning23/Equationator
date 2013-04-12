@@ -391,9 +391,6 @@ namespace Equationator
 					//The next node has a higher value than the current champion
 					RootNode = iter;
 				}
-
-				//increment the iterator
-				iter = iter.Next;
 			}
 
 			//ok, return the node we found with the highest value.

@@ -139,16 +139,19 @@ namespace Equationator
 					}
 					else
 					{
+						//skip over the dollar sign
+						i++;
+
 						//check if the 4 cahracter substring is stored in our grammar dictionary
-						string subString = equationText.Substring(i, 5);
+						string subString = equationText.Substring(i, 4);
 
 						if (FunctionDictionary.ContainsKey(subString))
 						{
 							//We found a matching function call in the dictionary
 							tokenList.Add(new Token(subString, TokenType.Function));
 
-							//since we consumed the $ followed by 4 characters, increment the index by 4
-							i += 4;
+							//since we consumed the $ followed by 4 characters, increment the index by 3 and the for loop will increment the last one
+							i += 3;
 						}
 						else
 						{
@@ -175,11 +178,6 @@ namespace Equationator
 				{
 					//We found an operator value...
 					tokenList.Add(new Token(equationText[i].ToString(), TokenType.Operator));
-				}
-				else
-				{
-					//error: there was a $something that wasn't a param and wasn't in our function dictionary
-					throw new FormatException("Equation text didn't fit into the \"num oper num\" pattern somehow, or contained invalid grammar");
 				}
 			}
 
