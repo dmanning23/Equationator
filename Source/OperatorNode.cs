@@ -12,6 +12,50 @@ namespace Equationator
 		#region Members
 		
 		#endregion Members
+
+		#region Properties
+
+		public char Operator
+		{
+			set
+			{
+				//what operator is it?
+				switch (value)
+				{
+					case '^':
+					{
+						OrderOfOperationsValue = PemdasValue.Exponent;
+					}
+						break;
+					case '*':
+					{
+						OrderOfOperationsValue = PemdasValue.Multiplication;
+					}
+						break;
+					case '/':
+					{
+						OrderOfOperationsValue = PemdasValue.Division;
+					}
+						break;
+					case '+':
+					{
+						OrderOfOperationsValue = PemdasValue.Addition;
+					}
+						break;
+					case '-':
+					{
+						OrderOfOperationsValue = PemdasValue.Subtraction;
+					}
+						break;
+					default:
+					{
+						throw new FormatException("invalid operator text: " + value);
+					}
+				}
+			}
+		}
+
+		#endregion //Properties
 		
 		#region Methods
 		
@@ -44,41 +88,7 @@ namespace Equationator
 			}
 			
 			//get the operator
-			char oper = tokenList[curIndex].TokenText[0];
-			
-			//what operator is it?
-			switch (oper)
-			{
-				case '^':
-				{
-					OrderOfOperationsValue = PemdasValue.Exponent;
-				}
-				break;
-				case '*':
-				{
-					OrderOfOperationsValue = PemdasValue.Multiplication;
-				}
-				break;
-				case '/':
-				{
-					OrderOfOperationsValue = PemdasValue.Division;
-				}
-				break;
-				case '+':
-				{
-					OrderOfOperationsValue = PemdasValue.Addition;
-				}
-				break;
-				case '-':
-				{
-					OrderOfOperationsValue = PemdasValue.Subtraction;
-				}
-				break;
-				default:
-				{
-					throw new FormatException("invalid operator text: " + oper);
-				}
-			}
+			Operator = tokenList[curIndex].TokenText[0];
 			
 			//increment the current index since we consumed the operator token
 			curIndex++;

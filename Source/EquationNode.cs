@@ -58,6 +58,70 @@ namespace Equationator
 		}
 
 		/// <summary>
+		/// This method gets called when the token parser encounters a minus sign in front of a value.
+		/// If the next token is a number, it will be changed to a negative number.
+		/// If the next token is a funcion, param, or equation, an equation will be generated that multiplies the result by -1
+		/// </summary>
+		/// <returns>The negative token.</returns>
+		/// <param name="tokenList">Token list.</param>
+		/// <param name="curIndex">Current index.</param>
+		/// <param name="owner">Owner.</param>
+		public static BaseNode ParseNegativeToken(List<Token> tokenList, ref int curIndex, Equation owner)
+		{
+			//verify that this is not the last token
+			if (curIndex >= (tokenList.Count - 1))
+			{
+				throw new FormatException("Can't end an equation with an operator");
+			}
+			
+			//check that the token is a minus sign
+			if ("-" != tokenList[curIndex].TokenText)
+			{
+				throw new FormatException("Expected a value, but found an invalid operator instead");
+			}
+			
+			//skip past the minus sign so we can get to the next token
+			curIndex++;
+			
+			//create a number node, parse the next token into it
+			BaseNode valueNode = BaseNode.ParseValueNode(tokenList, ref curIndex, owner);
+			Debug.Assert(null != valueNode);
+
+			//what did we get back?
+			if (valueNode is NumberNode)
+			{
+				//the next node is a number, multiply it by minus one
+				NumberNode myNumberNode = valueNode as NumberNode;
+				myNumberNode.NumberValue *= -1.0f;
+			}
+			else
+			{
+				//ok the node was a function, param, or equation
+
+				//create another equation to multiply that resdult by -1
+				NumberNode negativeOne = new NumberNode();
+				negativeOne.NumberValue = -1.0f;
+				OperatorNode multiplyNode = new OperatorNode();
+				multiplyNode.Operator = '*';
+
+				//string it all together
+				negativeOne.AppendNextNode(multiplyNode);
+				multiplyNode.AppendNextNode(valueNode);
+
+				//put that into an equation node and treeify it
+				EquationNode myEquationNode = new EquationNode();
+				myEquationNode.SubEquation = negativeOne.Treeify();
+				Debug.Assert(null != myEquationNode.SubEquation);
+
+				//set our result to the whole equation
+				valueNode = myEquationNode;
+			}
+			
+			//return it as the result
+			return valueNode;
+		}
+
+		/// <summary>
 		/// Solve the equation!
 		/// This method recurses into the whole tree and returns a result from the equation.
 		/// </summary>

@@ -74,7 +74,7 @@ namespace Equationator
 		/// Appends the next node.
 		/// </summary>
 		/// <param name="nextNode">Next node.</param>
-		protected void AppendNextNode(BaseNode nextNode)
+		public void AppendNextNode(BaseNode nextNode)
 		{
 			Debug.Assert(null != nextNode);
 			nextNode.Prev = this;
@@ -234,35 +234,7 @@ namespace Equationator
 				case TokenType.Operator:
 				{
 					//whoa, how did an operator get in here?  it better be a minus sign
-
-					//verify that this is not the last token
-					if (curIndex >= (tokenList.Count - 1))
-					{
-						throw new FormatException("Can't end an equation with an operator");
-					}
-
-					//check that the token is a minus sign
-					if ("-" != tokenList[curIndex].TokenText)
-					{
-						throw new FormatException("Expected a value, but found an invalid operator instead");
-					}
-
-					//the next node had better be a number
-					curIndex++;
-					if (TokenType.Number != tokenList[curIndex].TypeOfToken)
-					{
-						throw new FormatException("Sorry, but the Equationator only allows negative NUMBERS.  Try multiplying by -1 instead.");
-					}
-
-					//create a number node, parse the next token into it
-					NumberNode valueNode = new NumberNode();
-					valueNode.ParseToken(tokenList, ref curIndex, owner);
-
-					//multiply that number by minus one
-					valueNode.NumberValue *= -1.0f;
-
-					//return it as the result
-					return valueNode;
+					return EquationNode.ParseNegativeToken(tokenList, ref curIndex, owner);
 				}
 
 				default:
