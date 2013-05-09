@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System;
+using System.Globalization;
 
 namespace Equationator
 {
@@ -60,7 +61,7 @@ namespace Equationator
 			Debug.Assert(curIndex < tokenList.Count);
 
 			//get the number out of the list
-			if (!float.TryParse(tokenList[curIndex].TokenText, out _num))
+			if (!float.TryParse(tokenList[curIndex].TokenText, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _num))
 			{
 				throw new FormatException("Could not parse \"" + tokenList[curIndex].TokenText.ToString() + "\" into a number.");
 			}
