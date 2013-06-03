@@ -51,6 +51,13 @@ namespace EquationatorTest
 		#region tests
 
 		[Test]
+		public void ParseEmpty()
+		{
+			equation.Parse("");
+			Assert.AreEqual(0.0f, equation.Solve(ParamFunc));
+		}
+
+		[Test]
 		public void ParseSingleNumber()
 		{
 			equation.Parse("4");

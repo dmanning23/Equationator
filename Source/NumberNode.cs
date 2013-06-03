@@ -56,9 +56,16 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			Debug.Assert(null != tokenList);
-			Debug.Assert(null != owner);
-			Debug.Assert(curIndex < tokenList.Count);
+			//check arguments
+			if (null == tokenList) 
+			{
+				throw new ArgumentNullException("tokenList");
+			}
+			if (null == owner) 
+			{
+				throw new ArgumentNullException("owner");
+			}
+			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
 
 			//get the number out of the list
 			if (!float.TryParse(tokenList[curIndex].TokenText, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _num))

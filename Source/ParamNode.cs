@@ -38,9 +38,9 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			Debug.Assert(null != tokenList);
-			Debug.Assert(null != owner);
-			Debug.Assert(curIndex < tokenList.Count);
+			Debug.Assert(null != tokenList); //TODO: throw exceptions
+			Debug.Assert(null != owner); //TODO: throw exceptions
+			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
 			
 			//get the number out of the list
 			try
@@ -71,7 +71,7 @@ namespace Equationator
 		public override float Solve(ParamDelegate paramCallback)
 		{
 			//get the parameter value.
-			Debug.Assert(null != paramCallback);
+			Debug.Assert(null != paramCallback); //TODO: throw exceptions
 			return paramCallback(ParamIndex);
 		}
 		

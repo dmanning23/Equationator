@@ -35,9 +35,16 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			Debug.Assert(null != tokenList);
-			Debug.Assert(null != owner);
-			Debug.Assert(curIndex < tokenList.Count);
+			//check arguments
+			if (null == tokenList) 
+			{
+				throw new ArgumentNullException("tokenList");
+			}
+			if (null == owner) 
+			{
+				throw new ArgumentNullException("owner");
+			}
+			Debug.Assert(curIndex < tokenList.Count);  //TODO: throw exceptions
 
 			//parse the equation into our subnode
 			SubEquation = BaseNode.Parse(tokenList, ref curIndex, owner);
@@ -50,11 +57,11 @@ namespace Equationator
 				fakeNode.NumberValue = 0.0f;
 				SubEquation = fakeNode;
 			}
-			Debug.Assert(null != SubEquation);
+			Debug.Assert(null != SubEquation); //TODO: throw exceptions
 
 			//treeify the subequation so we can solve it
 			SubEquation = SubEquation.Treeify();
-			Debug.Assert(null != SubEquation);
+			Debug.Assert(null != SubEquation); //TODO: throw exceptions
 		}
 
 		/// <summary>
@@ -85,7 +92,7 @@ namespace Equationator
 			
 			//create a number node, parse the next token into it
 			BaseNode valueNode = BaseNode.ParseValueNode(tokenList, ref curIndex, owner);
-			Debug.Assert(null != valueNode);
+			Debug.Assert(null != valueNode); //TODO: throw exceptions
 
 			//what did we get back?
 			if (valueNode is NumberNode)
@@ -111,7 +118,7 @@ namespace Equationator
 				//put that into an equation node and treeify it
 				EquationNode myEquationNode = new EquationNode();
 				myEquationNode.SubEquation = negativeOne.Treeify();
-				Debug.Assert(null != myEquationNode.SubEquation);
+				Debug.Assert(null != myEquationNode.SubEquation); //TODO: throw exceptions
 
 				//set our result to the whole equation
 				valueNode = myEquationNode;
@@ -130,7 +137,7 @@ namespace Equationator
 		public override float Solve(ParamDelegate paramCallback)
 		{
 			//Return the sub equation solver
-			Debug.Assert(null != SubEquation);
+			Debug.Assert(null != SubEquation); //TODO: throw exceptions
 			return SubEquation.Solve(paramCallback);
 		}
 		

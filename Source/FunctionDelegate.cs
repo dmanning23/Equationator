@@ -8,4 +8,3 @@ namespace Equationator
 	/// </summary>
 	public delegate float FunctionDelegate();
 }
-

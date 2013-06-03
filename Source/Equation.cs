@@ -73,12 +73,20 @@ namespace Equationator
 			//straight up tokenize the equation: operators, numbers, parens, functions, params
 			List<Token> tokenList = Tokenize(equationText);
 
-			//sort out those tokens into a linked list of equation nodes
-			int index = 0;
-			BaseNode listRootNode = BaseNode.Parse(tokenList, ref index, this);
+			//check if an empty equation was passed into the equationator
+			if (0 == tokenList.Count)
+			{
+				RootNode = null;
+			}
+			else
+			{
+				//sort out those tokens into a linked list of equation nodes
+				int index = 0;
+				BaseNode listRootNode = BaseNode.Parse(tokenList, ref index, this);
 
-			//take that linked list and bend it into a binary tree.  Grab the root node
-			RootNode = listRootNode.Treeify();
+				//take that linked list and bend it into a binary tree.  Grab the root node
+				RootNode = listRootNode.Treeify();
+			}
 		}
 
 		/// <summary>
@@ -87,8 +95,15 @@ namespace Equationator
 		/// <param name="paramCallback">This is a callback function to get the value of params to pass to this equation</param>
 		public float Solve(ParamDelegate paramCallback)
 		{
-			Debug.Assert(null != RootNode);
-			return RootNode.Solve(paramCallback);
+			if (null != RootNode)
+			{
+				return RootNode.Solve(paramCallback);
+			}
+			else
+			{
+				//There is no equation parsed into this equationator
+				return 0.0f;
+			}
 		}
 
 		/// <summary>

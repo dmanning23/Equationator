@@ -77,9 +77,16 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			Debug.Assert(null != tokenList);
-			Debug.Assert(null != owner);
-			Debug.Assert(curIndex < tokenList.Count);
+			//check arguments
+			if (null == tokenList) 
+			{
+				throw new ArgumentNullException("tokenList");
+			}
+			if (null == owner) 
+			{
+				throw new ArgumentNullException("owner");
+			}
+			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
 
 			//make sure the token text is the correct length
 			if (tokenList[curIndex].TokenText.Length != 1)
@@ -103,8 +110,16 @@ namespace Equationator
 		public override float Solve(ParamDelegate paramCallback)
 		{
 			//make sure this node is set up correctly
-			Debug.Assert(null != Prev);
-			Debug.Assert(null != Next);
+
+			//check arguments
+			if (null == Prev) 
+			{
+				throw new ArgumentNullException("Prev");
+			}
+			if (null == Next) 
+			{
+				throw new ArgumentNullException("Next");
+			}
 
 			//Solve the sub nodes!
 			float prevResult = Prev.Solve(paramCallback);
@@ -123,8 +138,15 @@ namespace Equationator
 				}
 				case PemdasValue.Division:
 				{
-					//TODO: can hit divide by zero exception here
-					return prevResult / nextResult;
+					//guard against divide by zero exception
+					if (0.0f == nextResult)
+					{
+						return 0.0f;
+					}
+					else
+					{
+						return prevResult / nextResult;
+					}
 				}
 				case PemdasValue.Addition:
 				{

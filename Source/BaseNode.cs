@@ -76,7 +76,7 @@ namespace Equationator
 		/// <param name="nextNode">Next node.</param>
 		public void AppendNextNode(BaseNode nextNode)
 		{
-			Debug.Assert(null != nextNode);
+			Debug.Assert(null != nextNode); //TODO: throw exceptions
 			nextNode.Prev = this;
 			this.Next = nextNode;
 		}
@@ -113,13 +113,19 @@ namespace Equationator
 		/// <returns>A basenode pointing at the head of a linked list parsed by this method</returns>
 		static public BaseNode Parse(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			Debug.Assert(null != tokenList);
-			Debug.Assert(null != owner);
-			Debug.Assert(curIndex < tokenList.Count);
+			if (null == tokenList) 
+			{
+				throw new ArgumentNullException("tokenList");
+			}
+			if (null == owner) 
+			{
+				throw new ArgumentNullException("owner");
+			}
+			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
 
 			//first get a value, which will be a number, function, param, or equation node
 			BaseNode myNumNode = BaseNode.ParseValueNode(tokenList, ref curIndex, owner);
-			Debug.Assert(null != myNumNode);
+			Debug.Assert(null != myNumNode); //TODO: throw exceptions
 
 			//if there are any tokens left, get an operator
 			if (curIndex < tokenList.Count)
@@ -139,7 +145,7 @@ namespace Equationator
 
 					//Recurse into the parse function and sort out the rest of the tokens
 					BaseNode nextNode = BaseNode.Parse(tokenList, ref curIndex, owner);
-					Debug.Assert(null != nextNode);
+					Debug.Assert(null != nextNode); //TODO: throw exceptions
 					
 					//add that node to the end of the list
 					myOperNode.AppendNextNode(nextNode);
@@ -159,9 +165,15 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		static protected BaseNode ParseValueNode(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			Debug.Assert(null != tokenList);
-			Debug.Assert(null != owner);
-			Debug.Assert(curIndex < tokenList.Count);
+			if (null == tokenList) 
+			{
+				throw new ArgumentNullException("tokenList");
+			}
+			if (null == owner) 
+			{
+				throw new ArgumentNullException("owner");
+			}
+			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
 
 			//what kind of token do I have at that index?
 			switch (tokenList[curIndex].TypeOfToken)
@@ -254,9 +266,15 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		static protected BaseNode ParseOperNode(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			Debug.Assert(null != tokenList);
-			Debug.Assert(null != owner);
-			Debug.Assert(curIndex < tokenList.Count);
+			if (null == tokenList) 
+			{
+				throw new ArgumentNullException("tokenList");
+			}
+			if (null == owner) 
+			{
+				throw new ArgumentNullException("owner");
+			}
+			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
 
 			//what kind of token do I have at that index?
 			switch (tokenList[curIndex].TypeOfToken)
@@ -309,7 +327,7 @@ namespace Equationator
 		public BaseNode Treeify()
 		{
 			//This method should only ever be called on head nodes!
-			Debug.Assert(null == Prev);
+			Debug.Assert(null == Prev); //TODO: throw exceptions
 
 			//If this is a leaf node, there is nothing to do here!
 			if (null == Next)
@@ -321,8 +339,8 @@ namespace Equationator
 			BaseNode RootNode = GetHighestPemdas();
 
 			//by this point nodes are either leaf or binary nodes with a node at each end
-			Debug.Assert(null != RootNode.Prev);
-			Debug.Assert(null != RootNode.Next);
+			Debug.Assert(null != RootNode.Prev); //TODO: throw exceptions
+			Debug.Assert(null != RootNode.Next); //TODO: throw exceptions
 
 			//set the next node to be the head of it's own list
 			RootNode.Next.MakeHead();
@@ -349,7 +367,7 @@ namespace Equationator
 		/// <returns>The highest pemdas.</returns>
 		private BaseNode GetHighestPemdas()
 		{
-			Debug.Assert(null != Next);
+			Debug.Assert(null != Next); //TODO: throw exceptions
 			BaseNode RootNode = this;
 			for  (BaseNode iter = Next; iter != null; iter = iter.Next)
 			{
