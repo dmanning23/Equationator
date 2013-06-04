@@ -12,6 +12,7 @@ namespace Equationator
 		Exponent,
 		Multiplication,
 		Division,
+		Modulo,
 		Addition,
 		Subtraction,
 		Invalid

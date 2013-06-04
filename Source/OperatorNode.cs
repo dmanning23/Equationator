@@ -37,6 +37,11 @@ namespace Equationator
 						OrderOfOperationsValue = PemdasValue.Division;
 					}
 						break;
+					case '%':
+					{
+						OrderOfOperationsValue = PemdasValue.Modulo;
+					}
+						break;
 					case '+':
 					{
 						OrderOfOperationsValue = PemdasValue.Addition;
@@ -146,6 +151,18 @@ namespace Equationator
 					else
 					{
 						return prevResult / nextResult;
+					}
+				}
+				case PemdasValue.Modulo:
+				{
+					//guard against divide by zero exception
+					if (0.0f == nextResult)
+					{
+						return 0.0f;
+					}
+					else
+					{
+						return prevResult % nextResult;
 					}
 				}
 				case PemdasValue.Addition:

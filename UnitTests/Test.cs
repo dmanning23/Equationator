@@ -231,6 +231,34 @@ namespace EquationatorTest
 			Assert.AreEqual(3.0f, equation.Solve(ParamFunc)); //should be 3
 		}
 
+		[Test]
+		public void TestExponent()
+		{
+			equation.Parse("2^3");
+			Assert.AreEqual(8.0f, equation.Solve(ParamFunc));
+		}
+
+		[Test]
+		public void TestDivideByZero()
+		{
+			equation.Parse("1/0");
+			Assert.AreEqual(0.0f, equation.Solve(ParamFunc));
+		}
+
+		[Test]
+		public void TestModulo()
+		{
+			equation.Parse("5 % 2");
+			Assert.AreEqual(1.0f, equation.Solve(ParamFunc));
+		}
+
+		[Test]
+		public void TestModuloByZero()
+		{
+			equation.Parse("5%0");
+			Assert.AreEqual(0.0f, equation.Solve(ParamFunc));
+		}
+
 		#endregion //tests
 	}
 }

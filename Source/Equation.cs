@@ -189,7 +189,8 @@ namespace Equationator
 				         equationText[i] == '/' || 
 				         equationText[i] == '+' || 
 				         equationText[i] == '-' ||
-				         equationText[i] == '^')
+				         equationText[i] == '^' ||
+				         equationText[i] == '%')
 				{
 					//We found an operator value...
 					tokenList.Add(new Token(equationText[i].ToString(), TokenType.Operator));
