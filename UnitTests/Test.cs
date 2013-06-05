@@ -159,6 +159,20 @@ namespace EquationatorTest
 		}
 
 		[Test]
+		public void ParseSimpleEquationWhiteSpaceNewLines()
+		{
+			equation.Parse("\n1\n +\n1\n");
+			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+		}
+
+		[Test]
+		public void ParseSimpleEquationWhiteSpaceTabs()
+		{
+			equation.Parse("\n1\t\n +\n\t\t\n\n\n\t\t\t1\n");
+			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+		}
+
+		[Test]
 		public void ParseEquationWithFloats()
 		{
 			equation.Parse("1 + 3.0 * 0.5");
