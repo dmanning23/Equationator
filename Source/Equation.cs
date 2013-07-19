@@ -116,84 +116,34 @@ namespace Equationator
 			//The list that will hold all our tokens.
 			List<Token> tokenList = new List<Token>();
 
-			//Walk through the text and try to parse it out into an expression
-			StringBuilder word = new StringBuilder();
-			for (int i = 0; i < equationText.Length; i++)
+			//Start at the beginning and parse tokens until we hit the end of the string
+			int iCurrentIndex = 0;
+			while (iCurrentIndex < equationText.Length)
 			{
-				//First check if we are reading in a number
-				if (('0' <= equationText[i] && equationText[i] <= '9') || equationText[i] == '.')
+				//create a new token
+				Token nextToken = new Token();
+
+				//parse the token and update the current index
+				iCurrentIndex = nextToken.ParseToken(equationText, iCurrentIndex);
+
+				//Check the result of the token
+				if (TokenType.Function == nextToken.TypeOfToken)
 				{
-					//Add the digit/decimal to the end of the number
-					word.Append(equationText[i]);
-					
-					//If we haven't reached the end of the text, keep reading
-					if (i < equationText.Length - 1)
+					//function tokens require a bit more validation...
+					if (FunctionDictionary.ContainsKey(nextToken.TokenText))
 					{
-						continue;
-					}
-				}
-				
-				//If we have a string in there, it has to be a number that has been parsed up above
-				if (!string.IsNullOrEmpty(word.ToString()))
-				{
-					tokenList.Add(new Token(word.ToString(), TokenType.Number));
-					word.Clear();
-				}
-				
-				//We aren't reading a string, and if we had a number it was already stored up above... check what the current character is
-				if (equationText[i] == '$')
-				{
-					//we found a variable, check if it is a param or a function call
-					if (equationText[i + 1] >= '0' && equationText[i + 1] <= '9')
-					{
-						//We have a param value, parse it out and store in the list of values
-						tokenList.Add(new Token(equationText[i + 1].ToString(), TokenType.Param));
-						
-						//since we consumed the $ followed by param number, increment the index by 1
-						i++;
+						//We found a matching function call in the dictionary
+						tokenList.Add(nextToken);
 					}
 					else
 					{
-						//skip over the dollar sign
-						i++;
-
-						//check if the 4 cahracter substring is stored in our grammar dictionary
-						string subString = equationText.Substring(i, 4);
-
-						if (FunctionDictionary.ContainsKey(subString))
-						{
-							//We found a matching function call in the dictionary
-							tokenList.Add(new Token(subString, TokenType.Function));
-
-							//since we consumed the $ followed by 4 characters, increment the index by 3 and the for loop will increment the last one
-							i += 3;
-						}
-						else
-						{
-							//error: there was a $something that wasn't a param and wasn't in our function dictionary
-							throw new FormatException("Equation text contained $XXXX that was not found in the grammar dictionary");
-						}
+						//error: there was a $something that wasn't a param and wasn't in our function dictionary
+						throw new FormatException(string.Format("Equation text contained ${0} that was not found in the grammar dictionary", nextToken.TokenText));
 					}
 				}
-				else if (equationText[i] == '(')
+				else if (TokenType.Invalid != nextToken.TypeOfToken)
 				{
-					//we found an open paren!
-					tokenList.Add(new Token(equationText[i].ToString(), TokenType.OpenParen));
-				}
-				else if (equationText[i] == ')')
-				{
-					//we found a close paren!
-					tokenList.Add(new Token(equationText[i].ToString(), TokenType.CloseParen));
-				}
-				else if (equationText[i] == '*' || 
-				         equationText[i] == '/' || 
-				         equationText[i] == '+' || 
-				         equationText[i] == '-' ||
-				         equationText[i] == '^' ||
-				         equationText[i] == '%')
-				{
-					//We found an operator value...
-					tokenList.Add(new Token(equationText[i].ToString(), TokenType.Operator));
+					tokenList.Add(nextToken);
 				}
 			}
 

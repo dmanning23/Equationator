@@ -12,7 +12,8 @@ namespace Equationator
 		OpenParen,
 		CloseParen,
 		Function,
-		Param
+		Param,
+		Invalid
 	}
 }
 
