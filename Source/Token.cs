@@ -134,6 +134,12 @@ namespace Equationator
 				while (strEquationText[iIndex] >= '0' && strEquationText[iIndex] <= '9')
 				{
 					word.Append(strEquationText[iIndex++]);
+
+					//If we have reached the end of the text, quit reading
+					if (iIndex >= strEquationText.Length)
+					{
+						break;
+					}
 				}
 			}
 			else
