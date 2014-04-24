@@ -1,4 +1,3 @@
-using System;
 
 namespace Equationator
 {
@@ -16,4 +15,3 @@ namespace Equationator
 		Invalid
 	}
 }
-
