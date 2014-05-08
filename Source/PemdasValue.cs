@@ -7,7 +7,7 @@ namespace Equationator
 	/// </summary>
 	public enum PemdasValue
 	{
-		Value, //numbers, equations, function, params, are always leaf nodes
+		Value, //numbers, equations, function, params, tier, are always leaf nodes
 		Exponent,
 		Multiplication,
 		Division,

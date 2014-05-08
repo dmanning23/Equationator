@@ -12,6 +12,7 @@ namespace Equationator
 		CloseParen,
 		Function,
 		Param,
+		Tier,
 		Invalid
 	}
 }

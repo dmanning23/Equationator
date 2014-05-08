@@ -143,13 +143,24 @@ namespace Equationator
 			}
 			else
 			{
-				//We have a function call
-				TypeOfToken = TokenType.Function;
-
 				//TODO: Parse the function call until we hit the next token
 
+				//Get the function name
+				string funcName = strEquationText.Substring(iIndex, 4);
+
+				if ("tier" == funcName)
+				{
+					//If the function name is "tier", this is an extra special token
+					TypeOfToken = TokenType.Tier;
+				}
+				else
+				{
+					//We have a function call
+					TypeOfToken = TokenType.Function;
+				}
+
 				//check if the token is stored in our grammar dictionary
-				word.Append(strEquationText.Substring(iIndex, 4));
+				word.Append(funcName);
 				iIndex += 4;
 			}
 
