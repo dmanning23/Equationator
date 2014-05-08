@@ -54,144 +54,143 @@ namespace EquationatorTest
 		public void ParseEmpty()
 		{
 			equation.Parse("");
-			Assert.AreEqual(0.0f, equation.Solve(ParamFunc));
+			Solve(0.0f);
 		}
 
 		[Test]
 		public void ParseSingleNumber()
 		{
 			equation.Parse("4");
-			Assert.AreEqual(4.0f, equation.Solve(ParamFunc));
+			Solve(4.0f);
 		}
 
 		[Test]
 		public void ParseSingleFloatNumber()
 		{
 			equation.Parse("2.00");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+			Solve(2.0f);
 		}
 
 		[Test]
 		public void ParseSingleSmallNumber()
 		{
 			equation.Parse("0.1");
-			Assert.AreEqual(0.1f, equation.Solve(ParamFunc));
+			Solve(0.1f);
 		}
 
 		[Test]
 		public void ParseNegativeNumber()
 		{
 			equation.Parse("-4");
-			Assert.AreEqual(-4.0f, equation.Solve(ParamFunc));
+			Solve(-4.0f);
 		}
 
 		[Test]
 		public void ParseRandFunctionCall()
 		{
 			equation.Parse("$rand");
-			Assert.AreEqual(1.0f, equation.Solve(ParamFunc));
+			Solve(1.0f);
 		}
 
 		[Test]
 		public void ParseNegativeFunctionCall()
 		{
 			equation.Parse("-$rand");
-			Assert.AreEqual(-1.0f, equation.Solve(ParamFunc));
+			Solve(-1.0f);
 		}
 
 		[Test]
 		public void ParseRankFunctionCall()
 		{
 			equation.Parse("$rank");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+			Solve(2.0f);
 		}
 
 		[Test]
 		public void ParseSingleParameter()
 		{
 			equation.Parse("$1");
-			Assert.AreEqual(0.0f, equation.Solve(ParamFunc));
+			Solve(0.0f);
 			
 			equation.Parse("$2");
-			Assert.AreEqual(1.0f, equation.Solve(ParamFunc));
+			Solve(1.0f);
 		}
 
 		[Test]
 		public void ParseNegativeSingleParameter1()
 		{
 			equation.Parse("-$1");
-			Assert.AreEqual(0.0f, equation.Solve(ParamFunc));
+			Solve(0.0f);
 		}
 
 		[Test]
 		public void ParseNegativeSingleParameter2()
 		{
 			equation.Parse("-$2");
-			Assert.AreEqual(-1.0f, equation.Solve(ParamFunc));
+			Solve(-1.0f);
 		}
 
 		[Test]
 		public void ParseSimpleEquation()
 		{
 			equation.Parse("1+1");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+			Solve(2.0f);
 		}
 
 		[Test]
 		public void ParseSimpleEquationWhiteSpace1()
 		{
 			equation.Parse("1 +1");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+			Solve(2.0f);
 		}
 
 		[Test]
 		public void ParseSimpleEquationWhiteSpace2()
 		{
 			equation.Parse("1+ 1");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+			Solve(2.0f);
 		}
 
 		[Test]
 		public void ParseSimpleEquationWhiteSpace3()
 		{
 			equation.Parse("1 + 1");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+			Solve(2.0f);
 		}
 
 		[Test]
 		public void ParseSimpleEquationWhiteSpaceNewLines()
 		{
 			equation.Parse("\n1\n +\n1\n");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+			Solve(2.0f);
 		}
 
 		[Test]
 		public void ParseSimpleEquationWhiteSpaceTabs()
 		{
 			equation.Parse("\n1\t\n +\n\t\t\n\n\n\t\t\t1\n");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc));
+			Solve(2.0f);
 		}
 
 		[Test]
 		public void ParseEquationWithFloats()
 		{
 			equation.Parse("1 + 3.0 * 0.5");
-			Assert.AreEqual(2.5f, equation.Solve(ParamFunc)); //should be 2.5
+			Solve(2.5f);
 		}
 
 		[Test]
 		public void ParseOrderOfOperations()
 		{
 			equation.Parse("1 - 2 + 3.0 * 0.5");
-			Assert.AreEqual(-2.5f, equation.Solve(ParamFunc)); //should be -2.5
+			Solve(-2.5f);
 		}
 
 		[Test]
 		public void ParseNegativeEquation()
 		{
 			equation.Parse("-(1+1)");
-			Console.WriteLine(equation.TextEquation);
-			Console.WriteLine(equation.Solve(ParamFunc));
+			Solve(-2.0f);
 		}
 
 		[Test]
@@ -201,7 +200,7 @@ namespace EquationatorTest
 
 			//parens at the beginning
 			equation.Parse("(1+3.0)*.5");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc)); //should be 2
+			Solve(2.0f);
 		}
 
 		[Test]
@@ -210,7 +209,7 @@ namespace EquationatorTest
 
 			//parens at the end
 			equation.Parse("0.5*(1+3.0)");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc)); //should be 2
+			Solve(2.0f);
 		}
 
 		[Test]
@@ -218,7 +217,7 @@ namespace EquationatorTest
 		{
 			//parens in the middle
 			equation.Parse("0.5*(1+3.0)-1");
-			Assert.AreEqual(1.0f, equation.Solve(ParamFunc)); //should be 1
+			Solve(1.0f);
 		}
 
 		[Test]
@@ -226,7 +225,7 @@ namespace EquationatorTest
 		{
 			//parens at both ends
 			equation.Parse("(3-1)*(1+1)");
-			Assert.AreEqual(4.0f, equation.Solve(ParamFunc)); //should be 4
+			Solve(4.0f);
 		}
 
 		[Test]
@@ -234,7 +233,7 @@ namespace EquationatorTest
 		{
 			//parse a super complicated equation with parens in parens
 			equation.Parse("((3-1)*(1+1))/2");
-			Assert.AreEqual(2.0f, equation.Solve(ParamFunc)); //should be 2
+			Solve(2.0f);
 		}
 
 		[Test]
@@ -242,35 +241,75 @@ namespace EquationatorTest
 		{
 			//try doing a function call in an equation, just to make sure it is parsing them correctly
 			equation.Parse("$rank+1");
-			Assert.AreEqual(3.0f, equation.Solve(ParamFunc)); //should be 3
+			Solve(3.0f);
 		}
 
 		[Test]
 		public void TestExponent()
 		{
 			equation.Parse("2^3");
-			Assert.AreEqual(8.0f, equation.Solve(ParamFunc));
+			Solve(8.0f);
 		}
 
 		[Test]
 		public void TestDivideByZero()
 		{
 			equation.Parse("1/0");
-			Assert.AreEqual(0.0f, equation.Solve(ParamFunc));
+			Solve(0.0f);
 		}
 
 		[Test]
 		public void TestModulo()
 		{
 			equation.Parse("5 % 2");
-			Assert.AreEqual(1.0f, equation.Solve(ParamFunc));
+			Solve(1.0f);
 		}
 
 		[Test]
 		public void TestModuloByZero()
 		{
 			equation.Parse("5%0");
-			Assert.AreEqual(0.0f, equation.Solve(ParamFunc));
+			Solve(0.0f);
+		}
+
+		[Test]
+		public void TestTier()
+		{
+			equation.Parse("$tier");
+			Assert.AreEqual(0.0f, equation.Solve(ParamFunc, () => { return 0.0f; }));
+		}
+
+		[Test]
+		public void TestTier1()
+		{
+			equation.Parse("$tier");
+			Assert.AreEqual(1.0f, equation.Solve(ParamFunc, () => { return 1.0f; }));
+		}
+
+		[Test]
+		public void TestTierWithMod()
+		{
+			equation.Parse("$tier%3");
+			Assert.AreEqual(0.0f, equation.Solve(ParamFunc, () => { return 0.0f; }));
+		}
+
+		[Test]
+		public void TestTierWithMod1()
+		{
+			equation.Parse("$tier%3");
+			Assert.AreEqual(1.0f, equation.Solve(ParamFunc, () => { return 1.0f; }));
+		}
+
+		[Test]
+		public void TestTierWithMod4()
+		{
+			equation.Parse("$tier%3");
+			Assert.AreEqual(1.0f, equation.Solve(ParamFunc, () => { return 4.0f; }));
+		}
+
+		private void Solve(float desiredResult)
+		{
+			Assert.AreEqual(desiredResult, equation.Solve(ParamFunc, () => { return 0.0f; }));
 		}
 
 		#endregion //tests
