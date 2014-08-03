@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A5A021CF-48B5-4D35-9DC3-49AC93BF3824}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Equationator.Ouya</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AssemblyName>Equationator.Ouya</AssemblyName>
+    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="..\Source\BaseNode.cs">
+      <Link>BaseNode.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Equation.cs">
+      <Link>Equation.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\EquationNode.cs">
+      <Link>EquationNode.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\FunctionDelegate.cs">
+      <Link>FunctionDelegate.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\FunctionNode.cs">
+      <Link>FunctionNode.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\NumberNode.cs">
+      <Link>NumberNode.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\OperatorNode.cs">
+      <Link>OperatorNode.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ParamDelegate.cs">
+      <Link>ParamDelegate.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\ParamNode.cs">
+      <Link>ParamNode.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\PemdasValue.cs">
+      <Link>PemdasValue.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\TierNode.cs">
+      <Link>TierNode.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\Token.cs">
+      <Link>Token.cs</Link>
+    </Compile>
+    <Compile Include="..\Source\TokenType.cs">
+      <Link>TokenType.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+</Project>
