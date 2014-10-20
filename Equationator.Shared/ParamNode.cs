@@ -71,9 +71,8 @@ namespace Equationator
 		/// <returns>The solution of this node and all its subnodes!</returns>
 		public override float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
-			//get the parameter value.
-			Debug.Assert(null != paramCallback); //TODO: throw exceptions
-			return paramCallback(ParamIndex);
+            //get the parameter value.
+            return ((null != paramCallback) ? paramCallback(ParamIndex) : 0.0f);
 		}
 		
 		#endregion Methods

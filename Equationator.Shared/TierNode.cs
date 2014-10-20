@@ -55,8 +55,7 @@ namespace Equationator
 		public override float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
 			//Return the function we found in the parser
-			Debug.Assert(null != tierCallback); //TODO: throw exceptions
-			return tierCallback();
+            return ((null != tierCallback) ? tierCallback() : 0.0f);
 		}
 		
 		#endregion Methods
