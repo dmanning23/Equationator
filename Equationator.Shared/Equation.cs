@@ -65,26 +65,38 @@ namespace Equationator
 		/// <param name="equationText">Equation text.</param>
 		public void Parse(string equationText)
 		{
-			//grab the equation text
-			TextEquation = equationText;
+            try
+            {
+                //grab the equation text
+                TextEquation = equationText;
 
-			//straight up tokenize the equation: operators, numbers, parens, functions, params
-			List<Token> tokenList = Tokenize(equationText);
+                //straight up tokenize the equation: operators, numbers, parens, functions, params
+                List<Token> tokenList = Tokenize(equationText);
 
-			//check if an empty equation was passed into the equationator
-			if (0 == tokenList.Count)
-			{
-				RootNode = null;
-			}
-			else
-			{
-				//sort out those tokens into a linked list of equation nodes
-				int index = 0;
-				BaseNode listRootNode = BaseNode.Parse(tokenList, ref index, this);
+                //check if an empty equation was passed into the equationator
+                if (0 == tokenList.Count)
+                {
+                    RootNode = null;
+                }
+                else
+                {
+                    //sort out those tokens into a linked list of equation nodes
+                    int index = 0;
+                    BaseNode listRootNode = BaseNode.Parse(tokenList, ref index, this);
 
-				//take that linked list and bend it into a binary tree.  Grab the root node
-				RootNode = listRootNode.Treeify();
-			}
+                    //take that linked list and bend it into a binary tree.  Grab the root node
+                    RootNode = listRootNode.Treeify();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Clean up everything
+                TextEquation = null;
+                RootNode = null;
+
+                //rethrow the exception
+                throw;
+            }
 		}
 
 		/// <summary>

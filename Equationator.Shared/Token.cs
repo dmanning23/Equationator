@@ -210,12 +210,16 @@ namespace Equationator
 		/// <param name="iIndex">I index.</param>
 		static private bool IsOperatorCharacter(string strEquationText, int iIndex)
 		{
-			return (strEquationText[iIndex] == '*' || 
-				strEquationText[iIndex] == '/' || 
-				strEquationText[iIndex] == '+' || 
-				strEquationText[iIndex] == '-' ||
-				strEquationText[iIndex] == '^' ||
-				strEquationText[iIndex] == '%');
+            switch (strEquationText[iIndex])
+            {
+                case '*': return true;
+                case '/': return true;
+                case '+': return true;
+                case '-': return true;
+                case '^': return true;
+                case '%': return true;
+            }
+            return false;
 		}
 
 		#endregion Methods

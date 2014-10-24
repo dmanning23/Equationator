@@ -84,7 +84,7 @@ namespace Equationator
 			//check that the token is a minus sign
 			if ("-" != tokenList[curIndex].TokenText)
 			{
-				throw new FormatException("Expected a value, but found an invalid operator instead");
+                throw new FormatException("Expected a value, but found an invalid operator instead: " + tokenList[curIndex].TokenText);
 			}
 			
 			//skip past the minus sign so we can get to the next token
