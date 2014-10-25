@@ -43,7 +43,7 @@ namespace Equationator
 		/// <summary>
 		/// Adds a function to the grammar dictionaary so that it can be used in equations.
 		/// </summary>
-		/// <param name="FunctionText">Function text. Must be 4 characters, no numerals</param>
+        /// <param name="functionText">Function text. Must be 4 characters, no numerals</param>
 		/// <param name="callbackMethod">Callback method that will be called when $XXXX is encountered in an equation</param>
 		/// <exception cref="FormatException">thrown when the fucntionText is incorrect format</exception>
 		public void AddFunction(string functionText, FunctionDelegate callbackMethod)
@@ -88,7 +88,7 @@ namespace Equationator
                     RootNode = listRootNode.Treeify();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Clean up everything
                 TextEquation = null;

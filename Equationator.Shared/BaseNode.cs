@@ -261,6 +261,18 @@ namespace Equationator
 					return valueNode;
 				}
 
+                case TokenType.Rand:
+                {
+                    //create the function node
+                    var valueNode = new RandNode();
+
+                    //parse the function delegate into the node
+                    valueNode.ParseToken(tokenList, ref curIndex, owner);
+
+                    //return it as our result
+                    return valueNode;
+                }
+
 				default:
 				{
 					//should just be close paren nodes in here, which we should never get

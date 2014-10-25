@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ParamDelegate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ParamNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PemdasValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RandNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TierNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Token.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TokenType.cs" />
