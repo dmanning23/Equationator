@@ -16,13 +16,13 @@ namespace Equationator
 		/// The actual number value of this node
 		/// </summary>
 		/// <value>The number value.</value>
-		private float _num;
+		private double _num;
 
 		/// <summary>
 		/// Gets or sets the number.
 		/// </summary>
 		/// <value>The number.</value>
-		public float NumberValue 
+		public double NumberValue 
 		{ 
 			get
 			{
@@ -68,7 +68,7 @@ namespace Equationator
 			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
 
 			//get the number out of the list
-			if (!float.TryParse(tokenList[curIndex].TokenText, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _num))
+			if (!double.TryParse(tokenList[curIndex].TokenText, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out _num))
 			{
 				throw new FormatException("Could not parse \"" + tokenList[curIndex].TokenText.ToString() + "\" into a number.");
 			}
@@ -84,7 +84,7 @@ namespace Equationator
 		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
 		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
 		/// <returns>The solution of this node and all its subnodes!</returns>
-		public override float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
+		public override double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
 			//Return our number
 			return NumberValue;

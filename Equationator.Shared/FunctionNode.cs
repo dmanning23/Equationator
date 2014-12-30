@@ -75,7 +75,7 @@ namespace Equationator
 		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
 		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
 		/// <returns>The solution of this node and all its subnodes!</returns>
-		public override float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
+		public override double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
 			//Return the function we found in the parser
 			Debug.Assert(null != MyFunction); //TODO: throw exceptions

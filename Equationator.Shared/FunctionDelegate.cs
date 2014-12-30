@@ -5,5 +5,5 @@ namespace Equationator
 	/// Function delegate.
 	/// This is used to use callback functions in the Equationator
 	/// </summary>
-	public delegate float FunctionDelegate();
+	public delegate double FunctionDelegate();
 }

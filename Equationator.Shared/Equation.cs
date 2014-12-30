@@ -104,7 +104,7 @@ namespace Equationator
 		/// </summary>
 		/// <param name="paramCallback">This is a callback function to get the value of params to pass to this equation</param>
 		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
-		public float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
+		public double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
 			if (null != RootNode)
 			{
@@ -113,7 +113,7 @@ namespace Equationator
 			else
 			{
 				//There is no equation parsed into this equationator
-				return 0.0f;
+				return 0.0;
 			}
 		}
 

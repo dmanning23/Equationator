@@ -6,7 +6,7 @@ namespace EquationatorTest
     [TestFixture]
     class ParamCheatTests
     {
-        static float ParamFunc(int iIndex)
+        static double ParamFunc(int iIndex)
         {
             return iIndex - 1;
         }

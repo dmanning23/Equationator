@@ -113,7 +113,7 @@ namespace Equationator
 		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
 		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
 		/// <returns>The solution of this node and all its subnodes!</returns>
-		public override float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
+		public override double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
 			//make sure this node is set up correctly
 
@@ -128,15 +128,15 @@ namespace Equationator
 			}
 
 			//Solve the sub nodes!
-			float prevResult = Prev.Solve(paramCallback, tierCallback);
-			float nextResult = Next.Solve(paramCallback, tierCallback);
+			double prevResult = Prev.Solve(paramCallback, tierCallback);
+			double nextResult = Next.Solve(paramCallback, tierCallback);
 
 			//what kind of operator do we got?
 			switch (OrderOfOperationsValue)
 			{
 				case PemdasValue.Exponent:
 				{
-					return (float)Math.Pow(prevResult, nextResult);
+					return Math.Pow(prevResult, nextResult);
 				}
 				case PemdasValue.Multiplication:
 				{
@@ -145,9 +145,9 @@ namespace Equationator
 				case PemdasValue.Division:
 				{
 					//guard against divide by zero exception
-					if (0.0f == nextResult)
+					if (0.0 == nextResult)
 					{
-						return 0.0f;
+						return 0.0;
 					}
 					else
 					{
@@ -157,9 +157,9 @@ namespace Equationator
 				case PemdasValue.Modulo:
 				{
 					//guard against divide by zero exception
-					if (0.0f == nextResult)
+					if (0.0 == nextResult)
 					{
-						return 0.0f;
+						return 0.0;
 					}
 					else
 					{

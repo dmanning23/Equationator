@@ -52,10 +52,10 @@ namespace Equationator
 		/// </summary>
 		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
 		/// <returns>The solution of this node and all its subnodes!</returns>
-		public override float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
+		public override double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
 			//Return the function we found in the parser
-            return ((null != tierCallback) ? tierCallback() : 0.0f);
+            return ((null != tierCallback) ? tierCallback() : 0.0);
 		}
 		
 		#endregion Methods

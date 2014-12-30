@@ -15,17 +15,17 @@ namespace EquationatorTest
 		/// For testing purposes, this returns 1.0 instead of a random number.
 		/// </summary>
 		/// <returns>The float.</returns>
-		static float RandomFloat()
+		static double RandomDouble()
 		{
-			return 1.0f;
+			return 1.0;
 		}
 
-		static float GetDifficulty()
+		static double GetDifficulty()
 		{
-			return 2.0f;
+			return 2.0;
 		}
 
-		static float ParamFunc(int iIndex)
+		static double ParamFunc(int iIndex)
 		{
 			return iIndex - 1;
 		}
@@ -42,7 +42,7 @@ namespace EquationatorTest
 			this.equation = new Equation();
 
 			//add all the functions we will use
-			equation.AddFunction("rand", RandomFloat);
+			equation.AddFunction("rand", RandomDouble);
 			equation.AddFunction("rank", GetDifficulty);
 		}
 
@@ -75,7 +75,7 @@ namespace EquationatorTest
 		public void ParseSingleSmallNumber()
 		{
 			equation.Parse("0.1");
-			Solve(0.1f);
+			Solve(0.1);
 		}
 
 		[Test]
@@ -307,9 +307,9 @@ namespace EquationatorTest
 			Assert.AreEqual(1.0f, equation.Solve(ParamFunc, () => { return 4.0f; }));
 		}
 
-		private void Solve(float desiredResult)
+		private void Solve(double desiredResult)
 		{
-			Assert.AreEqual(desiredResult, equation.Solve(ParamFunc, () => { return 0.0f; }));
+			Assert.AreEqual(desiredResult, equation.Solve(ParamFunc, () => { return 0.0; }));
 		}
 
 		#endregion //tests

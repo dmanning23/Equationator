@@ -59,10 +59,10 @@ namespace Equationator
 		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
 		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
 		/// <returns>The solution of this node and all its subnodes!</returns>
-		public override float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
+		public override double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
 			//return a random float between 0.0 and 1.0
-            return (float)_rand.NextDouble();
+            return _rand.NextDouble();
 		}
 		
 		#endregion Methods

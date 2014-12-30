@@ -422,7 +422,7 @@ namespace Equationator
 		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
 		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
 		/// <returns>The solution of this node and all its subnodes!</returns>
-		public abstract float Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback);
+		public abstract double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback);
 
 		#endregion //Solve Functionality
 

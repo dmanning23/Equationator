@@ -7,5 +7,5 @@ namespace Equationator
 	/// </summary>
 	/// <param name="iParamIndex">index of the parameter to get.</param>
 	/// <returns>The value of that parameter.</returns>
-	public delegate float ParamDelegate(int iParamIndex);
+	public delegate double ParamDelegate(int iParamIndex);
 }
