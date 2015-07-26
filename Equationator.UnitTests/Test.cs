@@ -1,4 +1,3 @@
-using System;
 using Equationator;
 using NUnit.Framework;
 
@@ -8,8 +7,6 @@ namespace EquationatorTest
 	public class EquationatorTest
 	{
 		#region setup
-
-		static private Random g_Random = new Random(DateTime.Now.Millisecond);
 
 		/// <summary>
 		/// For testing purposes, this returns 1.0 instead of a random number.
