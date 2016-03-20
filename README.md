@@ -41,9 +41,3 @@ function nodes call the delegate and return that value
 param nodes will use the delegate that was passed to the Solve() method, pass in the parameter number, and return that.
 
 The final result returned from the single root node should be the correct value.
-
-TODO:
-=====
-
-exponents
-lots and lots of unit tests

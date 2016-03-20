@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Equationator.PCL</id>
+        <version>1.0.1</version>
+        <title>Equationator.PCL</title>
+        <authors>dmanning23</authors>
+		<owners>dmanning23</owners>
+		<projectUrl>https://github.com/dmanning23/Equationator</projectUrl>
+		<licenseUrl>https://github.com/dmanning23/Equationator/blob/master/LICENSE.txt</licenseUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Parse text as a math equation, implemented in a PCL</description>
+        <releaseNotes />
+        <copyright>Copyright 2016</copyright>
+        <tags></tags>
+        <dependencies>
+		</dependencies>
+    </metadata>
+    <files>
+        <file src="Y:\Documents\Projects\Equationator\Equationator\Equationator.PCL\bin\Release\Equationator.PCL.pdb" target="lib\Equationator.PCL.pdb" />
+        <file src="Y:\Documents\Projects\Equationator\Equationator\Equationator.PCL\bin\Release\Equationator.PCL.dll" target="lib\Equationator.PCL.dll" />
+    </files>
+</package>

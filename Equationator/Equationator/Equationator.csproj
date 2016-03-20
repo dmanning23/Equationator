@@ -1,18 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{961DF8D1-02CC-4E68-8284-FEBAB8AA9105}</ProjectGuid>
-    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{462E461D-E450-4D3E-8273-E6E2AF3F5CEC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Equationator.Android</RootNamespace>
-    <AssemblyName>Equationator.Android</AssemblyName>
+    <RootNamespace>Equationator</RootNamespace>
+    <AssemblyName>Equationator</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v4.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,69 +28,66 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Android" />
-    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Equationator.Shared\BaseNode.cs">
+    <Compile Include="..\..\Source\BaseNode.cs">
       <Link>BaseNode.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\Equation.cs">
+    <Compile Include="..\..\Source\Equation.cs">
       <Link>Equation.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\EquationNode.cs">
+    <Compile Include="..\..\Source\EquationNode.cs">
       <Link>EquationNode.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\FunctionDelegate.cs">
+    <Compile Include="..\..\Source\FunctionDelegate.cs">
       <Link>FunctionDelegate.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\FunctionNode.cs">
+    <Compile Include="..\..\Source\FunctionNode.cs">
       <Link>FunctionNode.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\NumberNode.cs">
+    <Compile Include="..\..\Source\NumberNode.cs">
       <Link>NumberNode.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\OperatorNode.cs">
+    <Compile Include="..\..\Source\OperatorNode.cs">
       <Link>OperatorNode.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\ParamDelegate.cs">
+    <Compile Include="..\..\Source\ParamDelegate.cs">
       <Link>ParamDelegate.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\ParamNode.cs">
+    <Compile Include="..\..\Source\ParamNode.cs">
       <Link>ParamNode.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\PemdasValue.cs">
+    <Compile Include="..\..\Source\PemdasValue.cs">
       <Link>PemdasValue.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\RandNode.cs">
+    <Compile Include="..\..\Source\RandNode.cs">
       <Link>RandNode.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\TierNode.cs">
+    <Compile Include="..\..\Source\TierNode.cs">
       <Link>TierNode.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\Token.cs">
+    <Compile Include="..\..\Source\Token.cs">
       <Link>Token.cs</Link>
     </Compile>
-    <Compile Include="..\Equationator.Shared\TokenType.cs">
+    <Compile Include="..\..\Source\TokenType.cs">
       <Link>TokenType.cs</Link>
     </Compile>
-    <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
+    <None Include="Equationator.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Values\Strings.xml" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

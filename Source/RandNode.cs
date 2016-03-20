@@ -1,30 +1,29 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System;
 
 namespace Equationator
 {
-	/// <summary>
-	/// This node evaluates to a paramter that is passed into the equation at solve time
-	/// </summary>
-	public class ParamNode : BaseNode
+    /// <summary>
+    /// This is a special node for getting random values
+    /// </summary>
+    class RandNode : BaseNode
 	{
 		#region Members
-		
-		/// <summary>
-		/// Gets or sets the parameter index
-		/// </summary>
-		/// <value>The index.</value>
-		private int ParamIndex { get; set; }
+
+        /// <summary>
+        /// the rand object for getting values
+        /// </summary>
+		Random _rand = new Random();
 		
 		#endregion Members
 		
 		#region Methods
 		
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Equationator.ParamNode"/> class.
+		/// Initializes a new instance of the <see cref="Equationator.FunctionNode"/> class.
 		/// </summary>
-		public ParamNode()
+        public RandNode()
 		{
 			OrderOfOperationsValue = PemdasValue.Value;
 		}
@@ -38,27 +37,18 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			Debug.Assert(null != tokenList); //TODO: throw exceptions
-			Debug.Assert(null != owner); //TODO: throw exceptions
+			//check arguments
+			if (null == tokenList) 
+			{
+				throw new ArgumentNullException("tokenList");
+			}
+			if (null == owner) 
+			{
+				throw new ArgumentNullException("owner");
+			}
 			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
 			
-			//get the number out of the list
-			try
-			{
-				ParamIndex = Convert.ToInt32(tokenList[curIndex].TokenText);
-			}
-			catch
-			{
-				throw new FormatException("Could not parse \"" + tokenList[curIndex].TokenText.ToString() + "\" into a parameter index.");
-			}
-
-			//double check that the index is valid
-			if ((ParamIndex <= 0) || (ParamIndex > 9))
-			{
-				throw new FormatException("Parameter index must be between 1 - 9");
-			}
-			
-			//increment the current index since we consumed the parameter index token
+			//increment the current index since we consumed the function name token
 			curIndex++;
 		}
 
@@ -71,8 +61,8 @@ namespace Equationator
 		/// <returns>The solution of this node and all its subnodes!</returns>
 		public override double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
-            //get the parameter value.
-            return ((null != paramCallback) ? paramCallback(ParamIndex) : 0.0);
+			//return a random float between 0.0 and 1.0
+            return _rand.NextDouble();
 		}
 		
 		#endregion Methods
