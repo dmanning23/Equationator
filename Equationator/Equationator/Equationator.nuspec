@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Equationator</id>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
         <title>Equationator</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -17,7 +17,7 @@
 		</dependencies>
     </metadata>
     <files>
-        <file src="Y:\Documents\Projects\Equationator\Equationator\Equationator\bin\Release\Equationator.pdb" target="lib\Equationator.pdb" />
-        <file src="Y:\Documents\Projects\Equationator\Equationator\Equationator\bin\Release\Equationator.dll" target="lib\Equationator.dll" />
+        <file src="bin\Release\Equationator.pdb" target="lib\Equationator.pdb" />
+        <file src="bin\Release\Equationator.dll" target="lib\Equationator.dll" />
     </files>
 </package>

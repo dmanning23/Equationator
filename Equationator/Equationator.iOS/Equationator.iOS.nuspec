@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>Equationator.Android</id>
+        <id>Equationator.iOS</id>
         <version>1.0.3</version>
-        <title>Equationator.Android</title>
+        <title>Equationator.iOS</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
 		<projectUrl>https://github.com/dmanning23/Equationator</projectUrl>
 		<licenseUrl>https://github.com/dmanning23/Equationator/blob/master/LICENSE.txt</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Parse text as a math equation. Native Android library.</description>
+		<description>Parse text as a math equation. Native iOS library.</description>
         <releaseNotes />
         <copyright>Copyright 2016</copyright>
         <tags></tags>
@@ -17,7 +17,7 @@
 		</dependencies>
     </metadata>
     <files>
-        <file src="bin\Release\Equationator.Android.pdb" target="lib\Equationator.Android.pdb" />
-        <file src="bin\Release\Equationator.Android.dll" target="lib\Equationator.Android.dll" />
+        <file src="bin\Release\Equationator.iOS.pdb" target="lib\Equationator.iOS.pdb" />
+        <file src="bin\Release\Equationator.iOS.dll" target="lib\Equationator.iOS.dll" />
     </files>
 </package>

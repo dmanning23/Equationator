@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Equationator.PCL</id>
-        <version>1.0.1</version>
+        <version>1.0.3</version>
         <title>Equationator.PCL</title>
         <authors>dmanning23</authors>
 		<owners>dmanning23</owners>
@@ -17,7 +17,7 @@
 		</dependencies>
     </metadata>
     <files>
-        <file src="Y:\Documents\Projects\Equationator\Equationator\Equationator.PCL\bin\Release\Equationator.PCL.pdb" target="lib\Equationator.PCL.pdb" />
-        <file src="Y:\Documents\Projects\Equationator\Equationator\Equationator.PCL\bin\Release\Equationator.PCL.dll" target="lib\Equationator.PCL.dll" />
+        <file src="bin\Release\Equationator.PCL.pdb" target="lib\Equationator.PCL.pdb" />
+        <file src="bin\Release\Equationator.PCL.dll" target="lib\Equationator.PCL.dll" />
     </files>
 </package>
