@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Equationator</RootNamespace>
-    <AssemblyName>Equationator</AssemblyName>
+    <AssemblyName>Equationator.DesktopGL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,53 +34,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Source\BaseNode.cs">
-      <Link>BaseNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Equation.cs">
-      <Link>Equation.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\EquationNode.cs">
-      <Link>EquationNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\FunctionDelegate.cs">
-      <Link>FunctionDelegate.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\FunctionNode.cs">
-      <Link>FunctionNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\NumberNode.cs">
-      <Link>NumberNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\OperatorNode.cs">
-      <Link>OperatorNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ParamDelegate.cs">
-      <Link>ParamDelegate.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\ParamNode.cs">
-      <Link>ParamNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\PemdasValue.cs">
-      <Link>PemdasValue.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\RandNode.cs">
-      <Link>RandNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\TierNode.cs">
-      <Link>TierNode.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\Token.cs">
-      <Link>Token.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Source\TokenType.cs">
-      <Link>TokenType.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Equationator.nuspec" />
-  </ItemGroup>
+  <Import Project="..\Equationator.SharedProject\Equationator.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

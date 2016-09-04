@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Equationator</id>
+        <version>1.0.4</version>
+        <title>Equationator</title>
+        <authors>dmanning23</authors>
+        <owners>dmanning23</owners>
+        <licenseUrl>https://github.com/dmanning23/Equationator/blob/master/LICENSE.txt</licenseUrl>
+        <projectUrl>https://github.com/dmanning23/Equationator</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Parse text as a math equation</description>
+        <releaseNotes />
+        <copyright>Copyright 2016</copyright>
+    </metadata>
+    <files>
+        <file src="Equationator.Android\bin\Release\Equationator.Android.dll" target="lib\MonoAndroid10\Equationator.Android.dll" />
+        <file src="Equationator.Android\bin\Release\Equationator.Android.pdb" target="lib\MonoAndroid10\Equationator.Android.pdb" />
+        <file src="Equationator.DesktopGL\bin\Release\Equationator.DesktopGL.dll" target="lib\net451\Equationator.DesktopGL.dll" />
+        <file src="Equationator.DesktopGL\bin\Release\Equationator.DesktopGL.pdb" target="lib\net451\Equationator.DesktopGL.pdb" />
+        <file src="Equationator.PCL\bin\Release\Equationator.PCL.dll" target="lib\portable-net45+wp8\Equationator.PCL.dll" />
+        <file src="Equationator.PCL\bin\Release\Equationator.PCL.pdb" target="lib\portable-net45+wp8\Equationator.PCL.pdb" />
+        <file src="Equationator.WindowsUniversal\bin\Release\Equationator.WindowsUniversal.dll" target="lib\uap10.0\Equationator.WindowsUniversal.dll" />
+        <file src="Equationator.WindowsUniversal\bin\Release\Equationator.WindowsUniversal.pdb" target="lib\uap10.0\Equationator.WindowsUniversal.pdb" />
+        <file src="Equationator.iOS\bin\Release\Equationator.iOS.dll" target="lib\Xamarin.iOS10\Equationator.iOS.dll" />
+        <file src="Equationator.iOS\bin\Release\Equationator.iOS.pdb" target="lib\Xamarin.iOS10\Equationator.iOS.pdb" />
+    </files>
+</package>

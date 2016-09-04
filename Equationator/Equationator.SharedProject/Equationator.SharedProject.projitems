@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d2c0318c-1469-48c6-a314-36b94fc3da83</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Equationator.SharedProject</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BaseNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Equation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EquationNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NumberNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OperatorNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ParamDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ParamNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PemdasValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RandNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TierNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Token.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TokenType.cs" />
+  </ItemGroup>
+</Project>
