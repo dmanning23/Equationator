@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Equationator.Tests", "Equationator.Tests\Equationator.Tests.csproj", "{F558CDF8-AA99-4B65-B30F-298BB650C3CB}"
 EndProject
@@ -25,11 +25,12 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Equationator.SharedProject"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Equationator.SharedProject\Equationator.SharedProject.projitems*{d2c0318c-1469-48c6-a314-36b94fc3da83}*SharedItemsImports = 13
+		Equationator.SharedProject\Equationator.SharedProject.projitems*{2b437108-1124-42d2-af03-3a68218e5c3d}*SharedItemsImports = 4
 		Equationator.SharedProject\Equationator.SharedProject.projitems*{462e461d-e450-4d3e-8273-e6e2af3f5cec}*SharedItemsImports = 4
-		Equationator.SharedProject\Equationator.SharedProject.projitems*{b3ba326a-3e8c-404b-9d1f-c0e96a5b3eea}*SharedItemsImports = 4
 		Equationator.SharedProject\Equationator.SharedProject.projitems*{67f9d3a8-f71e-4428-913f-c37ae82cdb24}*SharedItemsImports = 4
+		Equationator.SharedProject\Equationator.SharedProject.projitems*{b3ba326a-3e8c-404b-9d1f-c0e96a5b3eea}*SharedItemsImports = 4
 		Equationator.SharedProject\Equationator.SharedProject.projitems*{b5cca3b3-a231-450b-8a75-6400cddb54c7}*SharedItemsImports = 4
+		Equationator.SharedProject\Equationator.SharedProject.projitems*{d2c0318c-1469-48c6-a314-36b94fc3da83}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU
