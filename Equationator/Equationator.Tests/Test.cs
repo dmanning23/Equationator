@@ -176,11 +176,14 @@ namespace EquationatorTest
 			Solve(2.5f);
 		}
 
-		[Test]
-		public void ParseOrderOfOperations()
+		[TestCase("1 - 2 + 3.0 * 0.5", 0.5f)]
+		[TestCase("1 * 0.5", 0.5f)]
+		[TestCase("1 * 0.5 - 2", -1.5f)]
+		[TestCase("1 * 0.5 - 2 + 3.0", 1.5f)]
+		public void ParseOrderOfOperations(string texEquation, float expectedResult)
 		{
-			equation.Parse("1 - 2 + 3.0 * 0.5");
-			Solve(-2.5f);
+			equation.Parse(texEquation);
+			Solve(expectedResult);
 		}
 
 		[Test]

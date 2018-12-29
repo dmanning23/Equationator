@@ -28,6 +28,7 @@ Global
 		Equationator.SharedProject\Equationator.SharedProject.projitems*{b3ba326a-3e8c-404b-9d1f-c0e96a5b3eea}*SharedItemsImports = 4
 		Equationator.SharedProject\Equationator.SharedProject.projitems*{b5cca3b3-a231-450b-8a75-6400cddb54c7}*SharedItemsImports = 4
 		Equationator.SharedProject\Equationator.SharedProject.projitems*{d2c0318c-1469-48c6-a314-36b94fc3da83}*SharedItemsImports = 13
+		Equationator.SharedProject\Equationator.SharedProject.projitems*{f558cdf8-aa99-4b65-b30f-298bb650c3cb}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU
