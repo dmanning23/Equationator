@@ -11,7 +11,7 @@ namespace Equationator
 	/// </summary>
 	public class Equation
 	{
-		#region Members
+		#region Properties
 
 		/// <summary>
 		/// The text equation that this dude parsed.
@@ -28,7 +28,7 @@ namespace Equationator
 		/// </summary>
 		public Dictionary<string, FunctionDelegate> FunctionDictionary { get; private set; }
 
-		#endregion Members
+		#endregion Properties
 
 		#region Methods
 
@@ -43,7 +43,7 @@ namespace Equationator
 		/// <summary>
 		/// Adds a function to the grammar dictionaary so that it can be used in equations.
 		/// </summary>
-        /// <param name="functionText">Function text. Must be 4 characters, no numerals</param>
+		/// <param name="functionText">Function text. Must be 4 characters, no numerals</param>
 		/// <param name="callbackMethod">Callback method that will be called when $XXXX is encountered in an equation</param>
 		/// <exception cref="FormatException">thrown when the fucntionText is incorrect format</exception>
 		public void AddFunction(string functionText, FunctionDelegate callbackMethod)
@@ -65,38 +65,38 @@ namespace Equationator
 		/// <param name="equationText">Equation text.</param>
 		public void Parse(string equationText)
 		{
-            try
-            {
-                //grab the equation text
-                TextEquation = equationText;
+			try
+			{
+				//grab the equation text
+				TextEquation = equationText;
 
-                //straight up tokenize the equation: operators, numbers, parens, functions, params
-                List<Token> tokenList = Tokenize(equationText);
+				//straight up tokenize the equation: operators, numbers, parens, functions, params
+				var tokenList = Tokenize(equationText);
 
-                //check if an empty equation was passed into the equationator
-                if (0 == tokenList.Count)
-                {
-                    RootNode = null;
-                }
-                else
-                {
-                    //sort out those tokens into a linked list of equation nodes
-                    int index = 0;
-                    BaseNode listRootNode = BaseNode.Parse(tokenList, ref index, this);
+				//check if an empty equation was passed into the equationator
+				if (0 == tokenList.Count)
+				{
+					RootNode = null;
+				}
+				else
+				{
+					//sort out those tokens into a linked list of equation nodes
+					int index = 0;
+					BaseNode listRootNode = BaseNode.Parse(tokenList, ref index, this);
 
-                    //take that linked list and bend it into a binary tree.  Grab the root node
-                    RootNode = listRootNode.Treeify();
-                }
-            }
-            catch (Exception)
-            {
-                //Clean up everything
-                TextEquation = null;
-                RootNode = null;
+					//take that linked list and bend it into a binary tree.  Grab the root node
+					RootNode = listRootNode.Treeify();
+				}
+			}
+			catch (Exception)
+			{
+				//Clean up everything
+				TextEquation = null;
+				RootNode = null;
 
-                //rethrow the exception
-                throw;
-            }
+				//rethrow the exception
+				throw;
+			}
 		}
 
 		/// <summary>

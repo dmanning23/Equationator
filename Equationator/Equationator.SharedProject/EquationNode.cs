@@ -1,23 +1,23 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System;
 
 namespace Equationator
 {
 	public class EquationNode : BaseNode
 	{
-		#region Members
+		#region Properties
 
 		/// <summary>
 		/// An equation node holds an entire sub-equation that is contained in parenthesis
 		/// </summary>
 		/// <value>The sub equation.</value>
 		private BaseNode SubEquation { get; set; }
-		
-		#endregion Members
-		
+
+		#endregion Properties
+
 		#region Methods
-		
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Equationator.FunctionNode"/> class.
 		/// </summary>
@@ -25,7 +25,7 @@ namespace Equationator
 		{
 			OrderOfOperationsValue = PemdasValue.Value;
 		}
-		
+
 		/// <summary>
 		/// Parse the specified tokenList and curIndex.
 		/// overloaded by child types to do there own specific parsing.
@@ -36,11 +36,11 @@ namespace Equationator
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
 			//check arguments
-			if (null == tokenList) 
+			if (null == tokenList)
 			{
 				throw new ArgumentNullException("tokenList");
 			}
-			if (null == owner) 
+			if (null == owner)
 			{
 				throw new ArgumentNullException("owner");
 			}
@@ -80,16 +80,16 @@ namespace Equationator
 			{
 				throw new FormatException("Can't end an equation with an operator");
 			}
-			
+
 			//check that the token is a minus sign
 			if ("-" != tokenList[curIndex].TokenText)
 			{
-                throw new FormatException("Expected a value, but found an invalid operator instead: " + tokenList[curIndex].TokenText);
+				throw new FormatException("Expected a value, but found an invalid operator instead: " + tokenList[curIndex].TokenText);
 			}
-			
+
 			//skip past the minus sign so we can get to the next token
 			curIndex++;
-			
+
 			//create a number node, parse the next token into it
 			BaseNode valueNode = BaseNode.ParseValueNode(tokenList, ref curIndex, owner);
 			Debug.Assert(null != valueNode); //TODO: throw exceptions
@@ -123,7 +123,7 @@ namespace Equationator
 				//set our result to the whole equation
 				valueNode = myEquationNode;
 			}
-			
+
 			//return it as the result
 			return valueNode;
 		}
@@ -141,7 +141,7 @@ namespace Equationator
 			Debug.Assert(null != SubEquation); //TODO: throw exceptions
 			return SubEquation.Solve(paramCallback, tierCallback);
 		}
-		
+
 		#endregion Methods
 	}
 }

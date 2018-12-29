@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System;
 using System.Globalization;
 
 namespace Equationator
@@ -10,7 +10,7 @@ namespace Equationator
 	/// </summary>
 	public class NumberNode : BaseNode
 	{
-		#region Members
+		#region Properties
 
 		/// <summary>
 		/// The actual number value of this node
@@ -22,8 +22,8 @@ namespace Equationator
 		/// Gets or sets the number.
 		/// </summary>
 		/// <value>The number.</value>
-		public double NumberValue 
-		{ 
+		public double NumberValue
+		{
 			get
 			{
 				return _num;
@@ -34,7 +34,7 @@ namespace Equationator
 			}
 		}
 
-		#endregion Members
+		#endregion Properties
 
 		#region Methods
 
@@ -57,11 +57,11 @@ namespace Equationator
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
 			//check arguments
-			if (null == tokenList) 
+			if (null == tokenList)
 			{
 				throw new ArgumentNullException("tokenList");
 			}
-			if (null == owner) 
+			if (null == owner)
 			{
 				throw new ArgumentNullException("owner");
 			}

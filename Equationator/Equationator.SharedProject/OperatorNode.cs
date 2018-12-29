@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System;
 
 namespace Equationator
 {
@@ -9,10 +9,6 @@ namespace Equationator
 	/// </summary>
 	public class OperatorNode : BaseNode
 	{
-		#region Members
-		
-		#endregion Members
-
 		#region Properties
 
 		public char Operator
@@ -23,47 +19,47 @@ namespace Equationator
 				switch (value)
 				{
 					case '^':
-					{
-						OrderOfOperationsValue = PemdasValue.Exponent;
-					}
+						{
+							OrderOfOperationsValue = PemdasValue.Exponent;
+						}
 						break;
 					case '*':
-					{
-						OrderOfOperationsValue = PemdasValue.Multiplication;
-					}
+						{
+							OrderOfOperationsValue = PemdasValue.Multiplication;
+						}
 						break;
 					case '/':
-					{
-						OrderOfOperationsValue = PemdasValue.Division;
-					}
+						{
+							OrderOfOperationsValue = PemdasValue.Division;
+						}
 						break;
 					case '%':
-					{
-						OrderOfOperationsValue = PemdasValue.Modulo;
-					}
+						{
+							OrderOfOperationsValue = PemdasValue.Modulo;
+						}
 						break;
 					case '+':
-					{
-						OrderOfOperationsValue = PemdasValue.Addition;
-					}
+						{
+							OrderOfOperationsValue = PemdasValue.Addition;
+						}
 						break;
 					case '-':
-					{
-						OrderOfOperationsValue = PemdasValue.Subtraction;
-					}
+						{
+							OrderOfOperationsValue = PemdasValue.Subtraction;
+						}
 						break;
 					default:
-					{
-						throw new FormatException("invalid operator text: " + value);
-					}
+						{
+							throw new FormatException("invalid operator text: " + value);
+						}
 				}
 			}
 		}
 
 		#endregion //Properties
-		
+
 		#region Methods
-		
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Equationator.FunctionNode"/> class.
 		/// </summary>
@@ -72,7 +68,7 @@ namespace Equationator
 			//default to invalid, this will be set by the Parse function
 			OrderOfOperationsValue = PemdasValue.Invalid;
 		}
-		
+
 		/// <summary>
 		/// Parse the specified tokenList and curIndex.
 		/// overloaded by child types to do there own specific parsing.
@@ -83,11 +79,11 @@ namespace Equationator
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
 			//check arguments
-			if (null == tokenList) 
+			if (null == tokenList)
 			{
 				throw new ArgumentNullException("tokenList");
 			}
-			if (null == owner) 
+			if (null == owner)
 			{
 				throw new ArgumentNullException("owner");
 			}
@@ -98,10 +94,10 @@ namespace Equationator
 			{
 				throw new FormatException("operator text length can only be one character, was given " + tokenList[curIndex].TokenText);
 			}
-			
+
 			//get the operator
 			Operator = tokenList[curIndex].TokenText[0];
-			
+
 			//increment the current index since we consumed the operator token
 			curIndex++;
 		}
@@ -118,11 +114,11 @@ namespace Equationator
 			//make sure this node is set up correctly
 
 			//check arguments
-			if (null == Prev) 
+			if (null == Prev)
 			{
 				throw new ArgumentNullException("Prev");
 			}
-			if (null == Next) 
+			if (null == Next)
 			{
 				throw new ArgumentNullException("Next");
 			}
@@ -135,52 +131,52 @@ namespace Equationator
 			switch (OrderOfOperationsValue)
 			{
 				case PemdasValue.Exponent:
-				{
-					return Math.Pow(prevResult, nextResult);
-				}
+					{
+						return Math.Pow(prevResult, nextResult);
+					}
 				case PemdasValue.Multiplication:
-				{
-					return prevResult * nextResult;
-				}
+					{
+						return prevResult * nextResult;
+					}
 				case PemdasValue.Division:
-				{
-					//guard against divide by zero exception
-					if (0.0 == nextResult)
 					{
-						return 0.0;
+						//guard against divide by zero exception
+						if (0.0 == nextResult)
+						{
+							return 0.0;
+						}
+						else
+						{
+							return prevResult / nextResult;
+						}
 					}
-					else
-					{
-						return prevResult / nextResult;
-					}
-				}
 				case PemdasValue.Modulo:
-				{
-					//guard against divide by zero exception
-					if (0.0 == nextResult)
 					{
-						return 0.0;
+						//guard against divide by zero exception
+						if (0.0 == nextResult)
+						{
+							return 0.0;
+						}
+						else
+						{
+							return prevResult % nextResult;
+						}
 					}
-					else
-					{
-						return prevResult % nextResult;
-					}
-				}
 				case PemdasValue.Addition:
-				{
-					return prevResult + nextResult;
-				}
+					{
+						return prevResult + nextResult;
+					}
 				case PemdasValue.Subtraction:
-				{
-					return prevResult - nextResult;
-				}
+					{
+						return prevResult - nextResult;
+					}
 				default:
-				{
-					throw new NotSupportedException("found a weirdo thing in an equation node?");
-				}
+					{
+						throw new NotSupportedException("found a weirdo thing in an equation node?");
+					}
 			}
 		}
-		
+
 		#endregion Methods
 	}
 }

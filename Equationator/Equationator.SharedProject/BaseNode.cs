@@ -1,6 +1,6 @@
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Equationator
 {
@@ -10,14 +10,14 @@ namespace Equationator
 	/// </summary>
 	public abstract class BaseNode
 	{
-		#region Members
-			
+		#region Properties
+
 		/// <summary>
 		/// Gets or sets the previous node.
 		/// </summary>
 		/// <value>The previous.</value>
 		protected BaseNode Prev { get; set; }
-			
+
 		/// <summary>
 		/// Gets or sets the next node.
 		/// </summary>
@@ -30,13 +30,13 @@ namespace Equationator
 		/// </summary>
 		/// <value>The pembas value.</value>
 		protected PemdasValue OrderOfOperationsValue { get; set; }
-			
-		#endregion Members
-		
+
+		#endregion Properties
+
 		#region Methods
 
 		#region Constructor
-			
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Equationator.EquationNode"/> class.
 		/// </summary>
@@ -51,7 +51,7 @@ namespace Equationator
 		#endregion //Constructor
 
 		#region Linked List Functionality
-			
+
 		/// <summary>
 		/// Make this node into a head node.
 		/// </summary>
@@ -60,7 +60,7 @@ namespace Equationator
 			//note that if there is a prev node, it has to take care of it's own pointers!
 			Prev = null;
 		}
-			
+
 		/// <summary>
 		/// Makes this node into a tail node.
 		/// </summary>
@@ -69,7 +69,7 @@ namespace Equationator
 			//note that if there is a next node, it has to take care of it's own pointers!
 			Next = null;
 		}
-			
+
 		/// <summary>
 		/// Appends the next node.
 		/// </summary>
@@ -117,11 +117,11 @@ namespace Equationator
 		/// <returns>A basenode pointing at the head of a linked list parsed by this method</returns>
 		static public BaseNode Parse(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			if (null == tokenList) 
+			if (null == tokenList)
 			{
 				throw new ArgumentNullException("tokenList");
 			}
-			if (null == owner) 
+			if (null == owner)
 			{
 				throw new ArgumentNullException("owner");
 			}
@@ -150,7 +150,7 @@ namespace Equationator
 					//Recurse into the parse function and sort out the rest of the tokens
 					BaseNode nextNode = BaseNode.Parse(tokenList, ref curIndex, owner);
 					Debug.Assert(null != nextNode); //TODO: throw exceptions
-					
+
 					//add that node to the end of the list
 					myOperNode.AppendNextNode(nextNode);
 				}
@@ -169,11 +169,11 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		static protected BaseNode ParseValueNode(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			if (null == tokenList) 
+			if (null == tokenList)
 			{
 				throw new ArgumentNullException("tokenList");
 			}
-			if (null == owner) 
+			if (null == owner)
 			{
 				throw new ArgumentNullException("owner");
 			}
@@ -183,105 +183,105 @@ namespace Equationator
 			switch (tokenList[curIndex].TypeOfToken)
 			{
 				case TokenType.Number:
-				{
-					//awesome, that's nice and easy... just shove the text into a node as a number
-
-					//create the number node
-					NumberNode valueNode = new NumberNode();
-
-					//parse the text into the number node
-					valueNode.ParseToken(tokenList, ref curIndex, owner);
-
-					//return the number node as our result
-					return valueNode;
-				}
-
-				case TokenType.Param:
-				{
-					//also not bad, grab the text as a parameter index and put in a node
-
-					//create the param node
-					ParamNode valueNode = new ParamNode();
-
-					//parse the parameter index into the node
-					valueNode.ParseToken(tokenList, ref curIndex, owner);
-
-					//return it as our result
-					return valueNode;
-				}
-
-				case TokenType.Function:
-				{
-					//hmmm... need to get the delegate and put in a node?
-
-					//create the function node
-					FunctionNode valueNode = new FunctionNode();
-					
-					//parse the function delegate into the node
-					valueNode.ParseToken(tokenList, ref curIndex, owner);
-					
-					//return it as our result
-					return valueNode;
-				}
-
-				case TokenType.OpenParen:
-				{
-					//ok don't panic... 
-
-					//verify that this is not the last token
-					if (curIndex >= (tokenList.Count - 1))
 					{
-						throw new FormatException("Can't end an equation with an open paranthesis");
+						//awesome, that's nice and easy... just shove the text into a node as a number
+
+						//create the number node
+						NumberNode valueNode = new NumberNode();
+
+						//parse the text into the number node
+						valueNode.ParseToken(tokenList, ref curIndex, owner);
+
+						//return the number node as our result
+						return valueNode;
 					}
 
-					//move past this token, cuz nothing else to do with it
-					curIndex++;
+				case TokenType.Param:
+					{
+						//also not bad, grab the text as a parameter index and put in a node
 
-					//starting at the next token, start an equation node
-					EquationNode valueNode = new EquationNode();
+						//create the param node
+						ParamNode valueNode = new ParamNode();
 
-					//start parsing into the equation node
-					valueNode.ParseToken(tokenList, ref curIndex, owner);
+						//parse the parameter index into the node
+						valueNode.ParseToken(tokenList, ref curIndex, owner);
 
-					//return it as the result
-					return valueNode;
-				}
+						//return it as our result
+						return valueNode;
+					}
+
+				case TokenType.Function:
+					{
+						//hmmm... need to get the delegate and put in a node?
+
+						//create the function node
+						FunctionNode valueNode = new FunctionNode();
+
+						//parse the function delegate into the node
+						valueNode.ParseToken(tokenList, ref curIndex, owner);
+
+						//return it as our result
+						return valueNode;
+					}
+
+				case TokenType.OpenParen:
+					{
+						//ok don't panic... 
+
+						//verify that this is not the last token
+						if (curIndex >= (tokenList.Count - 1))
+						{
+							throw new FormatException("Can't end an equation with an open paranthesis");
+						}
+
+						//move past this token, cuz nothing else to do with it
+						curIndex++;
+
+						//starting at the next token, start an equation node
+						EquationNode valueNode = new EquationNode();
+
+						//start parsing into the equation node
+						valueNode.ParseToken(tokenList, ref curIndex, owner);
+
+						//return it as the result
+						return valueNode;
+					}
 
 				case TokenType.Operator:
-				{
-					//whoa, how did an operator get in here?  it better be a minus sign
-					return EquationNode.ParseNegativeToken(tokenList, ref curIndex, owner);
-				}
+					{
+						//whoa, how did an operator get in here?  it better be a minus sign
+						return EquationNode.ParseNegativeToken(tokenList, ref curIndex, owner);
+					}
 
 				case TokenType.Tier:
-				{
-					//create the function node
-					TierNode valueNode = new TierNode();
+					{
+						//create the function node
+						TierNode valueNode = new TierNode();
 
-					//parse the function delegate into the node
-					valueNode.ParseToken(tokenList, ref curIndex, owner);
+						//parse the function delegate into the node
+						valueNode.ParseToken(tokenList, ref curIndex, owner);
 
-					//return it as our result
-					return valueNode;
-				}
+						//return it as our result
+						return valueNode;
+					}
 
-                case TokenType.Rand:
-                {
-                    //create the function node
-                    var valueNode = new RandNode();
+				case TokenType.Rand:
+					{
+						//create the function node
+						var valueNode = new RandNode();
 
-                    //parse the function delegate into the node
-                    valueNode.ParseToken(tokenList, ref curIndex, owner);
+						//parse the function delegate into the node
+						valueNode.ParseToken(tokenList, ref curIndex, owner);
 
-                    //return it as our result
-                    return valueNode;
-                }
+						//return it as our result
+						return valueNode;
+					}
 
 				default:
-				{
-					//should just be close paren nodes in here, which we should never get
-					throw new FormatException("Expected a \"value\" token, but got a " + tokenList[curIndex].TypeOfToken.ToString());
-				}
+					{
+						//should just be close paren nodes in here, which we should never get
+						throw new FormatException("Expected a \"value\" token, but got a " + tokenList[curIndex].TypeOfToken.ToString());
+					}
 			}
 		}
 
@@ -294,11 +294,11 @@ namespace Equationator
 		/// <param name="owner">the equation that this node is part of.  required to pull function delegates out of the dictionary</param>
 		static protected BaseNode ParseOperNode(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
-			if (null == tokenList) 
+			if (null == tokenList)
 			{
 				throw new ArgumentNullException("tokenList");
 			}
-			if (null == owner) 
+			if (null == owner)
 			{
 				throw new ArgumentNullException("owner");
 			}
@@ -308,31 +308,31 @@ namespace Equationator
 			switch (tokenList[curIndex].TypeOfToken)
 			{
 				case TokenType.Operator:
-				{
-					//ok create an operator node
-					OperatorNode operNode = new OperatorNode();
-					
-					//parse into that node
-					operNode.ParseToken(tokenList, ref curIndex, owner);
-					
-					//return the thing
-					return operNode;
-				}
+					{
+						//ok create an operator node
+						OperatorNode operNode = new OperatorNode();
+
+						//parse into that node
+						operNode.ParseToken(tokenList, ref curIndex, owner);
+
+						//return the thing
+						return operNode;
+					}
 
 				case TokenType.CloseParen:
-				{
-					//close paren, just eat it and return null.  It means this equation is finished parsing
-					curIndex++;
-					return null;
-				}
+					{
+						//close paren, just eat it and return null.  It means this equation is finished parsing
+						curIndex++;
+						return null;
+					}
 
 				default:
-				{
-					//should just be close paren nodes in here, which we should never get
-					throw new FormatException("Expected a \"operator\" token, but got a " + tokenList[curIndex].TypeOfToken.ToString());
-				}
+					{
+						//should just be close paren nodes in here, which we should never get
+						throw new FormatException("Expected a \"operator\" token, but got a " + tokenList[curIndex].TypeOfToken.ToString());
+					}
 			}
-			
+
 		}
 
 		/// <summary>
@@ -408,10 +408,10 @@ namespace Equationator
 
 			//Now go backwards through the list to find the highest pemdas.
 			var rootNode = current;
-			for  (var iter = current.Prev; iter != null; iter = iter.Prev)
+			for (var iter = current.Prev; iter != null; iter = iter.Prev)
 			{
 				//if we found an addition or subtraction node, that is the highest value
-				if (PemdasValue.Addition <=  rootNode.OrderOfOperationsValue)
+				if (PemdasValue.Addition <= rootNode.OrderOfOperationsValue)
 				{
 					break;
 				}

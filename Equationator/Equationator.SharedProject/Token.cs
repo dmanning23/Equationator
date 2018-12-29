@@ -39,7 +39,7 @@ namespace Equationator
 		/// </summary>
 		/// <returns>int: the new current index in the string. Use this as the start point for parsing the next token</returns>
 		/// <param name="strEquationText">The full text string we are tokenizing</param>
-        /// <param name="iStartIndex">The character index in the string where to start tokenizing</param>
+		/// <param name="iStartIndex">The character index in the string where to start tokenizing</param>
 		public int ParseToken(string strEquationText, int iStartIndex)
 		{
 			//Walk through the text and try to parse it out into an expression
@@ -51,58 +51,58 @@ namespace Equationator
 					//read a number and return the new index
 					return ParseNumberToken(strEquationText, iStartIndex);
 				}
-                else if (IsOperatorCharacter(strEquationText, iStartIndex))
-                {
-                    //We found an operator value...
-                    TypeOfToken = TokenType.Operator;
-                    TokenText = strEquationText[iStartIndex].ToString();
-                    return ++iStartIndex;
-                }
+				else if (IsOperatorCharacter(strEquationText, iStartIndex))
+				{
+					//We found an operator value...
+					TypeOfToken = TokenType.Operator;
+					TokenText = strEquationText[iStartIndex].ToString();
+					return ++iStartIndex;
+				}
 
-                switch(strEquationText[iStartIndex])
-                {
-                    case '$':
-                        {
-                            //read a function/param and return the new index
-					        return ParseFunctionToken(strEquationText, iStartIndex);
-                        }
-                    case '(':
-                        {
-                            //we found an open paren!
-					        TypeOfToken = TokenType.OpenParen;
-					        TokenText = strEquationText[iStartIndex].ToString();
-					        return ++iStartIndex;
-                        }
-                    case ')':
-                        {
-                            //we found a close paren!
-					        TypeOfToken = TokenType.CloseParen;
-					        TokenText = strEquationText[iStartIndex].ToString();
-					        return ++iStartIndex;
-                        }
-                    case '?':
-                        {
-                            //We found a random number
-                            TypeOfToken = TokenType.Rand;
-                            TokenText = strEquationText[iStartIndex].ToString();
-                            return ++iStartIndex;
-                        }
-                    case 'x':
-                        {
-                            //We are going to cheat and use 'x' as $1
-                            return ParamCheat("1", iStartIndex);
-                        }
-                    case 'y':
-                        {
-                            //We are going to cheat and use 'x' as $2
-                            return ParamCheat("2", iStartIndex);
-                        }
-                    case 'z':
-                        {
-                            //We are going to cheat and use 'x' as $3
-                            return ParamCheat("3", iStartIndex);
-                        }
-                }
+				switch (strEquationText[iStartIndex])
+				{
+					case '$':
+						{
+							//read a function/param and return the new index
+							return ParseFunctionToken(strEquationText, iStartIndex);
+						}
+					case '(':
+						{
+							//we found an open paren!
+							TypeOfToken = TokenType.OpenParen;
+							TokenText = strEquationText[iStartIndex].ToString();
+							return ++iStartIndex;
+						}
+					case ')':
+						{
+							//we found a close paren!
+							TypeOfToken = TokenType.CloseParen;
+							TokenText = strEquationText[iStartIndex].ToString();
+							return ++iStartIndex;
+						}
+					case '?':
+						{
+							//We found a random number
+							TypeOfToken = TokenType.Rand;
+							TokenText = strEquationText[iStartIndex].ToString();
+							return ++iStartIndex;
+						}
+					case 'x':
+						{
+							//We are going to cheat and use 'x' as $1
+							return ParamCheat("1", iStartIndex);
+						}
+					case 'y':
+						{
+							//We are going to cheat and use 'x' as $2
+							return ParamCheat("2", iStartIndex);
+						}
+					case 'z':
+						{
+							//We are going to cheat and use 'x' as $3
+							return ParamCheat("3", iStartIndex);
+						}
+				}
 
 				//We found some white space
 				iStartIndex++;
@@ -193,13 +193,13 @@ namespace Equationator
 			return iIndex;
 		}
 
-        private int ParamCheat(string param, int iIndex)
-        {
-            TypeOfToken = TokenType.Param;
-            TokenText = param;
-            return ++iIndex;
+		private int ParamCheat(string param, int iIndex)
+		{
+			TypeOfToken = TokenType.Param;
+			TokenText = param;
+			return ++iIndex;
 
-        }
+		}
 
 		/// <summary>
 		/// Check whether the character at an index is a number
@@ -220,19 +220,18 @@ namespace Equationator
 		/// <param name="iIndex">I index.</param>
 		static private bool IsOperatorCharacter(string strEquationText, int iIndex)
 		{
-            switch (strEquationText[iIndex])
-            {
-                case '*': return true;
-                case '/': return true;
-                case '+': return true;
-                case '-': return true;
-                case '^': return true;
-                case '%': return true;
-            }
-            return false;
+			switch (strEquationText[iIndex])
+			{
+				case '*': return true;
+				case '/': return true;
+				case '+': return true;
+				case '-': return true;
+				case '^': return true;
+				case '%': return true;
+			}
+			return false;
 		}
 
 		#endregion Methods
 	}
 }
-

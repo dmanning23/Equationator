@@ -13,7 +13,7 @@ namespace Equationator
 		Function,
 		Param,
 		Tier,
-        Rand,
+		Rand,
 		Invalid
 	}
 }

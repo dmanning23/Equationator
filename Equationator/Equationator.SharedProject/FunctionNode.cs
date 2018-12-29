@@ -1,29 +1,29 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System;
 
 namespace Equationator
 {
 	public class FunctionNode : BaseNode
 	{
-		#region Members
+		#region Properties
 
 		/// <summary>
 		/// the 4 cahracter text from the script of the function
 		/// </summary>
 		/// <value>The name of the function.</value>
 		private string FunctionName { get; set; }
-		
+
 		/// <summary>
 		/// Gets or sets the function delegate
 		/// </summary>
 		/// <value>The index.</value>
 		private FunctionDelegate MyFunction { get; set; }
-		
-		#endregion Members
-		
+
+		#endregion Properties
+
 		#region Methods
-		
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Equationator.FunctionNode"/> class.
 		/// </summary>
@@ -31,7 +31,7 @@ namespace Equationator
 		{
 			OrderOfOperationsValue = PemdasValue.Value;
 		}
-		
+
 		/// <summary>
 		/// Parse the specified tokenList and curIndex.
 		/// overloaded by child types to do there own specific parsing.
@@ -42,16 +42,16 @@ namespace Equationator
 		protected override void ParseToken(List<Token> tokenList, ref int curIndex, Equation owner)
 		{
 			//check arguments
-			if (null == tokenList) 
+			if (null == tokenList)
 			{
 				throw new ArgumentNullException("tokenList");
 			}
-			if (null == owner) 
+			if (null == owner)
 			{
 				throw new ArgumentNullException("owner");
 			}
 			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
-			
+
 			//get the function name
 			FunctionName = tokenList[curIndex].TokenText;
 
@@ -63,7 +63,7 @@ namespace Equationator
 
 			//set the function delegate
 			MyFunction = owner.FunctionDictionary[FunctionName];
-			
+
 			//increment the current index since we consumed the function name token
 			curIndex++;
 		}
@@ -81,7 +81,7 @@ namespace Equationator
 			Debug.Assert(null != MyFunction); //TODO: throw exceptions
 			return MyFunction();
 		}
-		
+
 		#endregion Methods
 	}
 }

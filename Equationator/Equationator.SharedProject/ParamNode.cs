@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System;
 
 namespace Equationator
 {
@@ -9,18 +9,18 @@ namespace Equationator
 	/// </summary>
 	public class ParamNode : BaseNode
 	{
-		#region Members
-		
+		#region Properties
+
 		/// <summary>
 		/// Gets or sets the parameter index
 		/// </summary>
 		/// <value>The index.</value>
 		private int ParamIndex { get; set; }
-		
-		#endregion Members
-		
+
+		#endregion Properties
+
 		#region Methods
-		
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Equationator.ParamNode"/> class.
 		/// </summary>
@@ -28,7 +28,7 @@ namespace Equationator
 		{
 			OrderOfOperationsValue = PemdasValue.Value;
 		}
-		
+
 		/// <summary>
 		/// Parse the specified tokenList and curIndex.
 		/// overloaded by child types to do there own specific parsing.
@@ -41,7 +41,7 @@ namespace Equationator
 			Debug.Assert(null != tokenList); //TODO: throw exceptions
 			Debug.Assert(null != owner); //TODO: throw exceptions
 			Debug.Assert(curIndex < tokenList.Count); //TODO: throw exceptions
-			
+
 			//get the number out of the list
 			try
 			{
@@ -57,7 +57,7 @@ namespace Equationator
 			{
 				throw new FormatException("Parameter index must be between 1 - 9");
 			}
-			
+
 			//increment the current index since we consumed the parameter index token
 			curIndex++;
 		}
@@ -71,10 +71,10 @@ namespace Equationator
 		/// <returns>The solution of this node and all its subnodes!</returns>
 		public override double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
 		{
-            //get the parameter value.
-            return ((null != paramCallback) ? paramCallback(ParamIndex) : 0.0);
+			//get the parameter value.
+			return ((null != paramCallback) ? paramCallback(ParamIndex) : 0.0);
 		}
-		
+
 		#endregion Methods
 	}
 }
