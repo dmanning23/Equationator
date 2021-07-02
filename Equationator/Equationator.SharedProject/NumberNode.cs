@@ -82,9 +82,8 @@ namespace Equationator
 		/// This method recurses into the whole tree and returns a result from the equation.
 		/// </summary>
 		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
-		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
 		/// <returns>The solution of this node and all its subnodes!</returns>
-		public override double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
+		public override double Solve(ParamDelegate paramCallback)
 		{
 			//Return our number
 			return NumberValue;

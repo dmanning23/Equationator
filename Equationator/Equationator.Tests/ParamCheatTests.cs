@@ -44,7 +44,7 @@ namespace EquationatorTest
 
         private void Solve(float desiredResult)
         {
-            Assert.AreEqual(desiredResult, equation.Solve(ParamFunc, () => { return 0.0f; }));
+            Assert.AreEqual(desiredResult, equation.Solve(ParamFunc));
         }
     }
 }

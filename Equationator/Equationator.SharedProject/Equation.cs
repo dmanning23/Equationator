@@ -103,12 +103,11 @@ namespace Equationator
 		/// Get a result from the equation
 		/// </summary>
 		/// <param name="paramCallback">This is a callback function to get the value of params to pass to this equation</param>
-		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
-		public double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback)
+		public double Solve(ParamDelegate paramCallback)
 		{
 			if (null != RootNode)
 			{
-				return RootNode.Solve(paramCallback, tierCallback);
+				return RootNode.Solve(paramCallback);
 			}
 			else
 			{

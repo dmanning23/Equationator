@@ -172,16 +172,8 @@ namespace Equationator
 				//Get the function name
 				string funcName = strEquationText.Substring(iIndex, 4);
 
-				if ("tier" == funcName)
-				{
-					//If the function name is "tier", this is an extra special token
-					TypeOfToken = TokenType.Tier;
-				}
-				else
-				{
-					//We have a function call
-					TypeOfToken = TokenType.Function;
-				}
+				//We have a function call
+				TypeOfToken = TokenType.Function;
 
 				//check if the token is stored in our grammar dictionary
 				word.Append(funcName);

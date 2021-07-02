@@ -253,18 +253,6 @@ namespace Equationator
 						return EquationNode.ParseNegativeToken(tokenList, ref curIndex, owner);
 					}
 
-				case TokenType.Tier:
-					{
-						//create the function node
-						TierNode valueNode = new TierNode();
-
-						//parse the function delegate into the node
-						valueNode.ParseToken(tokenList, ref curIndex, owner);
-
-						//return it as our result
-						return valueNode;
-					}
-
 				case TokenType.Rand:
 					{
 						//create the function node
@@ -435,9 +423,8 @@ namespace Equationator
 		/// This method recurses into the whole tree and returns a result from the equation.
 		/// </summary>
 		/// <param name="paramCallback">Parameter callback that will be used to get teh values of parameter nodes.</param>
-		/// <param name="tierCallback">function callback that will be used to get the tier value at runtime.</param>
 		/// <returns>The solution of this node and all its subnodes!</returns>
-		public abstract double Solve(ParamDelegate paramCallback, FunctionDelegate tierCallback);
+		public abstract double Solve(ParamDelegate paramCallback);
 
 		#endregion //Solve Functionality
 

@@ -272,44 +272,9 @@ namespace EquationatorTest
 			Solve(0.0f);
 		}
 
-		[Test]
-		public void TestTier()
-		{
-			equation.Parse("$tier");
-			Assert.AreEqual(0.0f, equation.Solve(ParamFunc, () => { return 0.0f; }));
-		}
-
-		[Test]
-		public void TestTier1()
-		{
-			equation.Parse("$tier");
-			Assert.AreEqual(1.0f, equation.Solve(ParamFunc, () => { return 1.0f; }));
-		}
-
-		[Test]
-		public void TestTierWithMod()
-		{
-			equation.Parse("$tier%3");
-			Assert.AreEqual(0.0f, equation.Solve(ParamFunc, () => { return 0.0f; }));
-		}
-
-		[Test]
-		public void TestTierWithMod1()
-		{
-			equation.Parse("$tier%3");
-			Assert.AreEqual(1.0f, equation.Solve(ParamFunc, () => { return 1.0f; }));
-		}
-
-		[Test]
-		public void TestTierWithMod4()
-		{
-			equation.Parse("$tier%3");
-			Assert.AreEqual(1.0f, equation.Solve(ParamFunc, () => { return 4.0f; }));
-		}
-
 		private void Solve(double desiredResult)
 		{
-			Assert.AreEqual(desiredResult, equation.Solve(ParamFunc, () => { return 0.0; }));
+			Assert.AreEqual(desiredResult, equation.Solve(ParamFunc));
 		}
 
 		#endregion //tests
