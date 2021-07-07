@@ -80,13 +80,6 @@ namespace Equationator
 							TokenText = strEquationText[iStartIndex].ToString();
 							return ++iStartIndex;
 						}
-					case '?':
-						{
-							//We found a random number
-							TypeOfToken = TokenType.Rand;
-							TokenText = strEquationText[iStartIndex].ToString();
-							return ++iStartIndex;
-						}
 					case 'x':
 						{
 							//We are going to cheat and use 'x' as $1

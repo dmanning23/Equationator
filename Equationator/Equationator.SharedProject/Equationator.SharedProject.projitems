@@ -19,7 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ParamDelegate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ParamNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PemdasValue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RandNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Token.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TokenType.cs" />
   </ItemGroup>
