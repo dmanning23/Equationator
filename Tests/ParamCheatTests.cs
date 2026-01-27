@@ -1,5 +1,6 @@
 ﻿using Equationator;
 using NUnit.Framework;
+using Shouldly;
 
 namespace EquationatorTest
 {
@@ -44,7 +45,7 @@ namespace EquationatorTest
 
         private void Solve(float desiredResult)
         {
-            Assert.AreEqual(desiredResult, equation.Solve(ParamFunc));
+            equation.Solve(ParamFunc).ShouldBe(desiredResult);
         }
     }
 }
